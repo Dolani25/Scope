@@ -3,3 +3,4 @@ django-allauth
 jwt
 requests
 gunicorn
+google-auth
