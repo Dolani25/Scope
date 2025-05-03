@@ -1,0 +1,333 @@
+
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Calendar</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+        <style>
+            
+            
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background: black;
+    color: white;
+    min-height: 90vh;
+    display: flex;
+    justify-content: center;
+}
+
+main {
+    width: 100%;
+    max-width: 640px;
+    height: 100%;
+}
+
+.color-secondary {
+    color: #F27438;
+}
+
+.item-week {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.item-day {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-top: solid 1px rgba(255, 255, 255, 0.3);
+    padding: 0.6rem 0;
+}
+
+.item-day .isWeekend {
+    color: gray;
+}
+
+.item-day .current {
+    color: rgb(255, 155, 155);
+}
+
+.item-day.empty {
+    border: none;
+}
+
+.dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 100%;
+    margin: 0.2rem 0;
+    opacity: 0;
+    background: #F27438;
+}
+
+.item-day.active .dot {
+    opacity: 1;
+}
+
+            
+            
+        </style>
+    </head>
+    <body data-user="5">
+        <main>
+            <div class="font-bold text-lg my-4">
+                Calendar
+            </div>
+            
+            <div class="text-sm">
+                    <div class="flex items-center justify-between">
+                        <div class="color-secondary text-lg font-semibold" id="month">
+                            <!-- MONTH -->
+                        </div>
+                        <div class="text-gray-500 text-lg font-semibold" id="year">
+                            <!-- YEAR -->
+                        </div>
+                        <div class="flex items-center bg-slate-500 rounded-md">
+                            <div>
+                                <button id="btn-left" class="p-3">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"/>
+</svg>
+                                </button>
+                            </div>
+                            <div>
+                                <button id="btn-right" class="p-3">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"/>
+</svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="my-2">
+                        <div id="weeks" class="grid grid-cols-7 gap-4 mb-4">
+                            <div class="item-week">
+                                M
+                            </div>
+                            <div class="item-week">
+                                T
+                            </div>
+                            <div class="item-week">
+                                W
+                            </div>
+                            <div class="item-week">
+                                T
+                            </div>
+                            <div class="item-week">
+                                F
+                            </div>
+                            <div class="item-week">
+                                S
+                            </div>
+                            <div class="item-week">
+                                S
+                            </div>
+                        </div>
+                        
+                        <div id="days" class="grid grid-cols-7">
+                            <!-- LIST DAYS -->
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <div>
+                        
+                    </div>
+                </div>
+        </main>
+        <script>
+     /*       
+            
+
+$(document).ready(function(){
+    // VARIABLES
+    let endpoint = getBaseUrl();
+    let activities = [];
+    const user_i = $("body").data("user");
+    const monthNames = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"];
+    const el_month = $("#month");
+    const el_year = $("#year");
+    const el_days = $("#days");
+    const btn_left = $("#btn-left");
+    const btn_right = $("#btn-right");
+    let loading_date = false;
+    let DATE_SET = new Date();
+    
+    // --------------------------------
+    
+    // FUNCTIONS
+    function getBaseUrl() {
+        const location = window.location;
+        const protocol = location.protocol;
+        const host = location.hostname;
+        const baseUrl = protocol+"//"+host;
+        return baseUrl;
+    } // GET BASE URL
+    function log(_log, _isLog = true) {
+        _isLog ? console.log(_log) : alert(_log);
+    } // SHOW LOG OR ALERT
+    function getApiData(url) {
+        return $.ajax({
+            url: url,
+            type: 'GET',
+            dataType: 'json'
+        }).done(function(_data) {
+            console.log('Data received');
+        }).fail(function(jqXHR, textStatus, errorThrown) {
+            console.error('Error occurred:', textStatus, errorThrown);
+        });
+    } // GET API DATA
+    function handlerDate(_isPlus, _isByDay = false){
+        if (loading_date) return;
+        
+        if (_isByDay){
+            if (_isPlus) {
+                DATE_SET = DATE_SET.setDate(DATE_SET.getDate()+1);
+                DATE_SET = new Date(DATE_SET);
+            }else{
+                DATE_SET = DATE_SET.setDate(DATE_SET.getDate()-1);
+                DATE_SET = new Date(DATE_SET);
+            }
+        }else{
+            if (_isPlus) {
+                DATE_SET = DATE_SET.setMonth(DATE_SET.getMonth()+1);
+                DATE_SET = new Date(DATE_SET);
+            }else{
+                DATE_SET = DATE_SET.setMonth(DATE_SET.getMonth()-1);
+                DATE_SET = new Date(DATE_SET);
+            }
+        }
+    } // HANDLER DATE
+    function verifDate (_date) {
+        let active = false;
+        const activityExists = activities.find(activity => activity.created_at === _date);
+        if (activityExists){
+            active = true;
+        }else{
+            active = false;
+        }
+        return [active, activityExists];
+    } // CHECK IF DAY IS ACTIVE
+    function resetDate() {
+        el_month.html("");
+        el_year.html("");
+        el_days.html("");
+    } // RESET DATE
+    function generateElDay(_status, _day, _active, _current, _isWeekend) {
+        if (_status === 1) {
+            // DAY
+            return `<div class="item-day ${_active ? 'active' : null}"><div class="${_isWeekend ? 'isWeekend' : null} ${_current ? 'current' : null}">${_day}</div><div class="dot"></div></div>`;
+        } else {
+            // DAY EMPTY
+            return `<div class="item-day empty"></div>`;
+        }
+    } // GENERATED ELEMENT DAY
+    function isWeekend(_date) {
+        const [year, month, day] = _date.split("-");
+        const date = new Date(year, month - 1, day);
+        const dayOfWeek = date.getDay();
+        return dayOfWeek === 0 || dayOfWeek === 6;
+    } // DAY IS A WEEKEND
+    function GENMONTH(_date) {
+        if (loading_date) return;
+        loading_date = true;
+        // ---------
+        resetDate();
+        
+        // GET TODAY MONTH, YEAR AND DAY 
+        const now = new Date();
+        const nowMonthIndex = now.getMonth();
+        const nowYear = now.getFullYear();
+        
+        // GET CURRENT MONTH, YEAR AND DAY 
+        let currentDate = _date;
+        const currentMonthIndex = currentDate.getMonth();
+        const currentYear = currentDate.getFullYear();
+        const currentDay = currentDate.getDate();
+        
+        // Formatted date
+        const formattedDate = `${currentYear}-${(String(currentMonthIndex+1)).padStart(2, "0")}-${String(currentDay).padStart(2, "0")}`;
+        // Get month name 
+        const currentMonthName = monthNames[currentMonthIndex];
+
+        el_month.html(currentMonthName);
+        el_year.html(currentYear);
+        
+        // Get first day of month
+        const firstDayOfMonth = new Date(currentYear, currentMonthIndex, 1);
+        const firstDayOfWeek = firstDayOfMonth.getDay() ? firstDayOfMonth.getDay() : 7;
+
+        // Get last day of month
+        const firstDayOfNextMonth = new Date(currentYear, currentMonthIndex + 1, 1);
+        const lastDayOfMonth = new Date(firstDayOfNextMonth.getTime() - 86400000);
+        const numberOfDaysInMonth = lastDayOfMonth.getDate();
+        
+        function GETDAY() {
+            for (i=1; i<=7; i++) {
+                if (firstDayOfWeek === i) {
+                    for (j=1; j<=numberOfDaysInMonth; j++){
+                        let formattedDateItem = `${currentYear}-${(String(currentMonthIndex+1)).padStart(2, "0")}-${String(j).padStart(2, "0")}`;
+                        let row = verifDate(formattedDateItem);
+                        let isActive = row[0];
+                        let weekend = isWeekend(formattedDateItem);
+
+                        if (currentDay === j && nowMonthIndex === currentMonthIndex && currentYear === nowYear) {
+                            const el_ = generateElDay(1, j, isActive, true, weekend);
+                            el_days.append(el_);
+                        } else {
+                            const el_ = generateElDay(1, j, isActive, false, weekend);
+                            el_days.append(el_);
+                }
+                    
+                    }
+                } else{
+                    // MONTH NOT STARTED
+                    const el_ = generateElDay(0, 0, false, false, false);
+                    el_days.append(el_);
+                }
+            }
+        }
+        
+        // GETDAY();
+        
+        getApiData(`${endpoint}/api/activities/${user_i}/${formattedDate}`).then(function(_data){
+            if (_data) {
+                activities = _data["records"];
+                GETDAY();
+            }
+        }).catch((error) => {
+            activities = [];
+            GETDAY();
+        });
+
+        // ---------
+        loading_date = false;
+    } // GENERATE MONTH ACTIVITY
+    
+    // --------------------------------
+    
+    GENMONTH(DATE_SET);
+    
+    btn_left.click(function(){
+        handlerDate(false);
+        GENMONTH(DATE_SET);
+    }); // LEFT
+    btn_right.click(function(){
+        handlerDate(true);
+        GENMONTH(DATE_SET);
+    }); // RIGHT
+}); */
+        </script>
+    </body>
+</html>

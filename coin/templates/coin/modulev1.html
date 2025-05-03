@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title> Scope | {{airdrop.name}} </title>
+    
+  <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.3.0/color-thief.umd.js"></script>
+
+<script src='https://code.responsivevoice.org/responsivevoice.js'></script>
+    <style>
+        @import url('https://fonts.cdnfonts.com/css/nexa-bold');
+
+        html{
+          scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Nexa', sans-serif;
+            overflow-x: hidden; /* Prevent horizontal scrolling */
+        }
+        
+        ::selection {
+    background-color: orange;
+}
+
+        .filtered-div {
+          position: relative;
+            width: 100%;
+            max-width: 100%;
+            height: 10.9vh !important;
+            background: url('profilePic.jpg') center/cover;
+            
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-sizing: border-box; /* Include padding in the width calculation */
+            color: white; /* Set font color to white */
+            /*disable copy and paste*/
+-webkit-user-select: none;
+ -webkit-touch-callout: none;
+ -moz-user-select: none;
+ -ms-user-select: none; 
+user-select: none;
+text-decoration:none;
+
+        }
+
+        .content-wrapper {
+          top:0;
+          height: 100%;
+          box-sizing: border-box;
+          position: absolute;
+          
+            padding: 12px 20px;/* Increase the padding for space between content and border */
+            text-align: center;
+            width: 100%;
+            line-height: 0.9; /* Adjust line-height to reduce vertical space */
+            z-index: 10;
+        }
+        
+        .filter {
+          top:0;
+          height: 100%;
+          box-sizing: border-box;
+          position: absolute;
+          background: rgba(0,0,0,0.4);
+            width: 100%;
+            z-index: 5;
+        }
+        .topic, .lesson, .course {
+            letter-spacing: 0;
+            word-spacing: -1px;
+            margin: 0; /* Remove any default margin */
+        }
+
+
+        .topic {
+            text-align: center;
+            font-weight: 700;
+            font-size: 100%;
+        }
+        
+        .lesson , .course{
+          font-size: 60%;
+        }
+
+        .lesson {
+            text-align: right; /* Align the second paragraph to the right */
+        }
+        
+        .code{
+          padding: 10px;
+          border-radius: 3px;
+          background: #101010;
+          color:white;
+          font-size: 79%;
+          line-height: 1.7;
+        }
+        .note{
+          max-width:100vw;
+          padding: 20px 10px;
+           box-sizing: border-box; 
+        }
+        
+        .tooltip{
+          position: absolute;
+          z-index: 11;
+          background: #101010;
+          border-radius: 5px;
+          padding: 0px 10px;
+          color:white;
+          display:none;
+          border: 1px solid #ccc;
+          list-style: none;
+          /*disable copy and paste*/
+-webkit-user-select: none;
+ -webkit-touch-callout: none;
+ -moz-user-select: none;
+ -ms-user-select: none; 
+user-select: none;
+text-decoration:none;
+}
+
+        .tooltip li{
+          padding:5px 10px;
+          font-size:14px;
+          border-bottom: 1px solid #606060;
+          cursor:pointer;
+        }
+        .tooltip li:hover{
+          background:#303030;
+        }
+        
+        .tooltip::after{
+          content:"";
+          display: block;
+          border:5px solid;
+          border-color:#101010 transparent transparent transparent;
+          position: absolute ;
+          left:50%;
+          transform:translateX(-50%);
+        }
+        
+        
+      
+video , audio{
+  width:100%;
+}
+.video-container {
+  border-radius: 3px; /* Adjust the value to your desired border radius */
+  overflow: hidden; /* This ensures that the video takes the shape of the border radius */
+}
+
+h1{
+  font-size:120%;
+}
+
+#back{
+  display:flex;
+  justify-content: center;
+  align-items:center;
+  border-radius:6px;
+  margin-right:auto;
+  height:30px;
+  width:30px;
+ /* margin-top:3vh;*/
+  color:white;
+  background:#101010;
+}
+
+img{
+  display: block;
+  margin: 2vh auto 2vh auto;
+  height:25vh;
+  width:80%;
+  box-shadow: 0 10px 15px rgba(10, 10, 10, 0.5);
+  border-radius: 3px;
+                
+}
+
+#progress {
+        height: 70px;
+        width: 70px;
+        position: fixed;
+        bottom: 20px;
+        right: 10px;
+        border-radius: 50%;
+        place-items: center;
+        -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        display: none;
+        cursor: pointer;
+        z-index: 999;
+                -webkit-tap-highlight-color: transparent;
+      }
+      #progress-value {
+        display: block;
+        height: calc(100% - 15px);
+        width: calc(100% - 15px);
+        background-color: white;
+        border-radius: 50%;
+        display: -ms-grid;
+        display: grid;
+        place-items: center;
+        font-weight: 500;
+        font-size: 30px;
+        color: #011d33;
+      }
+  
+      @-webkit-keyframes scale {
+        50% {
+          -webkit-transform: scale(0.92);
+                  transform: scale(0.92);
+        }
+      }
+      @keyframes scale {
+        50% {
+          -webkit-transform: scale(0.92);
+                  transform: scale(0.92);
+        }
+      }
+      @media screen and (max-width: 600px) {
+        #progress {
+          height: 60px;
+          width: 60px;
+        }
+        #progress-value {
+          font-size: 20px;
+        }
+      }
+
+header {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100vw;
+          background: #fff; /*#283038;*/
+          border-bottom:1px solid #bbb;
+          height : 3.4vh;
+          z-index: 999999999;
+          padding : 5vmin;
+          display:flex;
+          align-items:center;
+         /* justify-content:space-between; */
+          overflow-x : hidden !important;
+          color : #101010;
+          font-weight:600;
+          font-size:23px;
+          
+      }
+      
+ #logo{   display: block;
+ margin:auto;
+ width:100px !important;
+ height:100px !important;
+  
+}
+
+.note{
+  text-align:center;
+  padding-top: 11vh;
+}
+
+#tokenAddress{
+  margin-top:-22px;
+}
+
+#priceInfo{
+  display:flex;
+  font-size:18px;
+  justify-content: space-between;
+}
+
+#progressOut{
+margin: 5px 0 5px 0;
+height:6px;
+width: 100%;
+margin-bottom:4vw;
+background:#3870D8;
+border-radius: 7px;
+
+box-shadow: inset 5px 5px 10px #2b56a6, 
+            inset -5px -5px 10px #458aff;
+}
+
+#progressIn{
+background: #F89038;
+height:6px;
+width:35%;
+border-radius:4px;
+
+
+background: linear-gradient(145deg, #ff9a3c, #df8232);
+box-shadow:  2x 2px 0px #f68f37, 
+             -2px -2px 0px #fa9139;
+}
+
+
+ 
+
+#coinName{
+  text-align:center !important;
+  margin-left: -16vw;
+  flex:1;
+}
+
+ul{
+  display:flex;
+  flex-direction: column;
+  margin-top:50;
+}
+
+ul li{
+  list-style: none;
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+ul li .progress i{
+  display: none;
+}
+
+ul li .progress{
+  margin: 14px 0;
+  width:30px;
+  height:30px;
+  border-radius: 50%;
+  background:rgba(68,68,68,0.7);
+  display:grid;
+  place-items: center;
+  color:#fff;
+  position: relative;
+}
+
+ul li .text{
+  font-size:13px;
+  font-weight:400;
+}
+
+ul li .progress p{
+  font-size: 13px;
+}
+
+.progress::after{
+  content: " ";
+  position:absolute ;
+  width:4px;
+  height:40px;
+  background: rgba(68,68,68,0.7);
+  bottom:30px;
+  left:50%;
+  transform:translateX(-50%);
+  z-index:-1;
+}
+
+.one::after{
+  height:0;
+}
+
+ul li .progress{
+  margin: 0 20px;
+}
+
+ul li .active{
+  background:orange;
+}
+
+ul li .active::after{
+  background:orange;
+}
+
+li .active p{
+  display:none;
+}
+
+ul li .active i{
+  display:flex;
+  font-size:21px;
+}
+    </style>
+</head>
+<body>
+    <header>
+      <div id="back">
+       <svg xmlns="http://www.w3.org/2000/svg"x="0px" y="0px"width="20" height="20"viewBox="0 0 172 172"style=" fill:#26e07f;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#1fb141"><path d="M21.5,21.5v129h64.5v-32.25v-64.5v-32.25zM86,53.75c0,17.7805 14.4695,32.25 32.25,32.25c17.7805,0 32.25,-14.4695 32.25,-32.25c0,-17.7805 -14.4695,-32.25 -32.25,-32.25c-17.7805,0 -32.25,14.4695 -32.25,32.25zM118.25,86c-17.7805,0 -32.25,14.4695 -32.25,32.25c0,17.7805 14.4695,32.25 32.25,32.25c17.7805,0 32.25,-14.4695 32.25,-32.25c0,-17.7805 -14.4695,-32.25 -32.25,-32.25z"></path></g></g></svg>
+      </div>
+      <span id="coinName">Tapswap</span>
+    </header>
+   <!-- <div class="filtered-div">
+        <div class="filter"></div>
+        <div class="content-wrapper">
+            <p class="course">30 DAYS OF REACT</p>
+            <p class="lesson">LESSON 03</p>
+            <p class="topic">FIRST COMPONENTS</p>
+        </div>
+      </div> -->
+      <div class="note">
+        <div id="progress">
+      <span id="progress-value">
+          <i class="fas fa-arrow-up"></i>
+      </span>
+    </div>
+      <div class=coinImg">
+        <svg id="logo" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg">   <defs>     <pattern id="img" patternUnits="userSpaceOnUse" width="100" height="100">       <image xlink:href="https://farm9.staticflickr.com/8461/8048823381_0fbc2d8efb.jpg" x="-25" width="150" height="100" />     </pattern>   </defs>   <polygon points="50 1 95 25 95 75 50 99 5 75 5 25" fill="url(#img)"/> </svg>
+        </div>
+     <h1>{{coin.name}}($TAP)</h1>
+    <span id="tokenAddress">{{coin.contract_add}}</span> <span class="copySvg">
+    <svg width="25px" height="25px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M10 8V7C10 6.05719 10 5.58579 10.2929 5.29289C10.5858 5 11.0572 5 12 5H17C17.9428 5 18.4142 5 18.7071 5.29289C19 5.58579 19 6.05719 19 7V12C19 12.9428 19 13.4142 18.7071 13.7071C18.4142 14 17.9428 14 17 14H16M7 19H12C12.9428 19 13.4142 19 13.7071 18.7071C14 18.4142 14 17.9428 14 17V12C14 11.0572 14 10.5858 13.7071 10.2929C13.4142 10 12.9428 10 12 10H7C6.05719 10 5.58579 10 5.29289 10.2929C5 10.5858 5 11.0572 5 12V17C5 17.9428 5 18.4142 5.29289 18.7071C5.58579 19 6.05719 19 7 19Z" stroke="#464455" stroke-linecap="round" stroke-linejoin="round"></path></g></svg>
+    </span>
+    
+    <p>{{coin.description}}</p>
+     
+<div id="progressOut" ><div id="progressIn"></div></div>
+
+<div id="priceInfo">
+<span>CAPITAL</span>
+<span>$0</span>
+</div>
+
+<!--    
+<div class="video-container">
+<video controls>
+  <source src="gh.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+</div>
+
+<audio controls>
+  <source src="your-audio.mp3" type="audio/mpeg">
+  Your browser does not support the audio tag.
+</audio>
+-->
+
+<ul>
+
+  <li>
+    <div class="active progress one">
+      <p>1</p>
+      <i></i>
+    </div>
+    <p class="text">Lorem ipsum dolor sit amet.</p>
+  </li>
+    <li>
+    <div class="active progress two">
+      <p>2</p>
+      <i></i>
+    </div>
+    <p class="text">Lorem ipsum dolor sit amet.</p>
+  </li>
+  <li>
+    <div class="progress three">
+      <p>3</p>
+      <i></i>
+    </div>
+    <p class="text">Lorem ipsum dolor sit amet.</p>
+  </li>
+</ul>
+
+
+
+
+ <div class="image-container">
+     <img src="profilePic.jpg" alt="Your Image" id="fullscreen-image">
+ </div>
+
+        
+      </div>
+    
+</body>
+<script>
+
+/*
+    const colorThief = new ColorThief();
+    const img = document.querySelector('image');
+alert("1");
+    // Make sure image is finished loading
+    if (img.complete) {
+    alert("3")
+      alert(colorThief.getColor(img));
+    } else {
+      image.addEventListener('load', function() {
+        alert(colorThief.getColor(img));
+      });
+    }
+    
+    alert("2");
+
+
+// Get the SVG element
+const svgElement = document.getElementById('logo');
+
+// Extract the image URL from the SVG code
+const imageURL = svgElement.querySelector('image').getAttribute('xlink:href');
+
+// Create an image element dynamically
+const img = new Image();
+
+// Set the image source to the extracted URL
+img.src = imageURL;
+
+// When the image is loaded
+img.onload = function() {
+    // Create a canvas element
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+
+    // Set the canvas size to match the image dimensions
+    canvas.width = img.width;
+    canvas.height = img.height;
+
+    // Draw the image onto the canvas
+    ctx.drawImage(img, 0, 0);
+
+    // Get the pixel data
+    const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    const pixels = imageData.data;
+
+    // Count pixel colors
+    const colorCounts = {};
+    for (let i = 0; i < pixels.length; i += 4) {
+        const color = pixels[i] + ',' + pixels[i + 1] + ',' + pixels[i + 2];
+        colorCounts[color] = colorCounts[color] ? colorCounts[color] + 1 : 1;
+    }
+
+    // Find the dominant color
+    let maxCount = 0;
+    let dominantColor = '';
+    for (const color in colorCounts) {
+        if (colorCounts[color] > maxCount) {
+            maxCount = colorCounts[color];
+            dominantColor = color;
+        }
+    }
+
+    alert('Dominant Color:', dominantColor);
+};
+*/
+//scroll progress-value
+let calcScrollValue = () => {
+        let scrollProgess = document.getElementById("progress");
+        let progressValue = document.getElementById("progress-value");
+
+        let pos = document.documentElement.scrollTop;
+        let calcHeight =
+          document.documentElement.scrollHeight -
+          document.documentElement.clientHeight;
+        let scrollValue = Math.round((pos * 100) / calcHeight);
+
+        scrollProgess.style.background = `conic-gradient(#03CC65 ${scrollValue}%, #d7d7d7 ${scrollValue}%)`;
+
+        if (pos > 100) {
+          scrollProgess.style.display = "grid";
+        } else {
+          scrollProgess.style.display = "none";
+        }
+        scrollProgess.addEventListener("click", () => {
+          document.documentElement.scrollTop = 0;
+        });
+      };
+      window.onscroll = calcScrollValue;
+      window.onload = calcScrollValue;
+
+const imageElement = document.getElementById('fullscreen-image');
+
+imageElement.addEventListener('click', () => {
+    if (imageElement.requestFullscreen) {
+        imageElement.requestFullscreen();
+    } else if (imageElement.mozRequestFullScreen) { // Firefox
+        imageElement.mozRequestFullScreen();
+    } else if (imageElement.webkitRequestFullscreen) { // Chrome, Safari, and Opera
+        imageElement.webkitRequestFullscreen();
+    } else if (imageElement.msRequestFullscreen) { // IE/Edge
+        imageElement.msRequestFullscreen();
+    }
+});
+
+// Exit fullscreen mode
+document.addEventListener('fullscreenchange', exitHandler);
+document.addEventListener('webkitfullscreenchange', exitHandler);
+document.addEventListener('mozfullscreenchange', exitHandler);
+document.addEventListener('MSFullscreenChange', exitHandler);
+
+function exitHandler() {
+    if (!document.fullscreenElement && !document.webkitIsFullScreen && !document.mozFullScreen && !document.msFullscreenElement) {
+        // Exit fullscreen mode
+    }
+}
+
+  //Rainbow.color()
+  var bodyText = document.body.textContent;
+   
+// Now, you can use the `bodyText` variable to access the text content within the <body> tag
+//responsiveVoice.speak(bodyText, "US English Female");
+ 
+ 
+ 
+ // Check if the browser supports the Web Speech API
+if ('speechSynthesis' in window) {
+  // Create a new SpeechSynthesisUtterance
+  var message = new SpeechSynthesisUtterance();
+  
+  var message = new SpeechSynthesisUtterance();
+  message.text = `${bodyText}`;
+  //alert("here")
+  var voices = window.speechSynthesis.getVoices();
+  message.voice = voices[0];
+  window.speechSynthesis.speak(message);
+  //alert("done")
+}
+ 
+ 
+
+
+</script>
+</html>

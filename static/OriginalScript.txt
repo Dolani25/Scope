@@ -1,0 +1,240 @@
+
+    document.addEventListener('DOMContentLoaded', function() {
+    var elements = document.querySelectorAll(':not(.no-vibrate)');
+    elements.forEach(function(element) {
+        element.addEventListener('click', function() {
+            navigator.vibrate(200);
+        });
+    });
+});
+    
+    
+    //populate the app with cryptoairdrops with api
+      function $(query) {
+
+    return document.querySelector(query)
+
+}
+
+function $$(query) {
+
+    return document.querySelectorAll(query)
+
+}
+
+//GOOGLE ACCOUNT onSignIn
+function onSignIn(googleUser) {
+  var profile = googleUser.getBasicProfile();
+  alert('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+  alert('Name: ' + profile.getName());
+  alert('Image URL: ' + profile.getImageUrl());
+  alert('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+}
+
+
+
+        // Function to update notification count
+        function updateNotificationCount(count) {
+            const countElement = document.querySelector('.notification-count');
+            countElement.textContent = count > 0 ? count : '';
+        }
+
+        // Example usage:
+        // updateNotificationCount(3); // Sets count to 3
+        // updateNotificationCount(0); // Hides the count
+     
+     /* deals with Airdrop or Token ratings*/
+        document.addEventListener('DOMContentLoaded', () => {
+            const progressBars = document.querySelectorAll('.circular-progress');
+            
+            progressBars.forEach(bar => {
+                const rating = parseFloat(bar.dataset.rating);
+                const progress = (rating / 5) * 100; // Convert rating to percentage
+                bar.style.setProperty('--progress', progress);
+
+                // Set numeric rating display
+                const ratingValue = bar.querySelector('.circular-progress-value');
+                ratingValue.textContent = rating.toFixed(1);
+            });
+        });
+
+document.body.onclick = function() {
+  if(!document.fullscreenElement){ 
+  document.body.webkitRequestFullScreen(); }
+  }
+
+
+async function getData() {
+    // fetching data
+
+    const res = await fetch('https://api.airdropgecko.com/api/v3/airdrops/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false')
+
+    const data = await res.json()
+
+    
+
+
+
+    //updateUI(data) /*call to call airdrops api*/
+
+}
+
+
+
+function updateUI(data) {
+
+    // updating UI
+
+    const container = $('.bottom')
+    //The tab exist first in the bottom div
+    
+
+    let html = '<div class="tab"><h4 style="font-size: 83.7%; font-weight : 700;">Recent Transactions</h4><span id="airBtn" style="color : grey;" onclick="populate(this.id)">...</span></div>'
+
+
+
+    data.forEach((item, index) => {
+        let airdropPossessed = (Math.random() * 14).toFixed(8);
+        
+        //instantiate credibilityand sign its value.
+        
+        let credibility = new Intl.NumberFormat("en-US", {
+    signDisplay: "exceptZero"
+}).format(item.price_change_percentage_24h.toFixed
+(2)); 
+
+       
+        
+        let divChange = "";
+
+        const div = `
+
+            <div class='box' id='${index == 0 && 'wheat'}' >
+            <span class="down1">
+            <img src='${item.image}' class='airdrops' alt='${item.name}' /></span>
+            
+            
+                          
+              <span class="down2">
+                  <h4 id="airdropName">${item.name}</h4>
+                  <span id="startAmount">$${(item.current_price).toFixed(2)} <span id="credibility" onclick ="this.id = 'credibilityRed';"                    >${credibility}%</span></span>
+              </span>
+              <span class="down3">
+                  <h4 id="airdropValue">$${(item.current_price * airdropPossessed).toFixed(2)}</h4>
+                  <span id="airdropPossessed">${airdropPossessed}</span>
+              </span>
+          </div>       
+
+                
+
+        `
+        
+      //change price_change_percentage_24h font color to red if less than 1
+      
+        
+      if (Math.sign(credibility)== -1){
+           divChange = div.replace('id="credibility"', 'id="credibilityRed"') ;
+           
+           
+            
+        }
+        else{
+            divChange += div;
+        }
+      
+      
+
+        html += divChange;
+
+    })
+  
+            
+
+    container.innerHTML = html + '<div id="add" class="dashed-box">+ Add Wallet</div></div>'  ;
+    
+
+}
+
+
+
+
+
+window.onload = getData()
+
+      let generateBtn = document.getElementById("generate-btn");
+      let buyBtn = document.getElementById("buyBtn");
+      let addBtn = document.getElementById("add");
+      let uploadBox = document.getElementById("uploadBox");
+      let addBox = document.getElementById("addBox");
+      let buyBox = document.getElementById("buy"); 
+      let outputAddr = document.getElementById("output-addr");
+      let box1 = document.getElementById("box1");
+      let box2 = document.getElementById("box2");
+      let box3 = document.getElementById("box3");
+      let qrCode = document.getElementById("qrCode");
+      let closeBtn = document.getElementById("closeBtn");
+      let copyBtn = document.getElementById("copy-btn");
+      let code = document.querySelector('.code'); 
+      let toast = document.querySelector('#qrCode');
+      let walletString = "0123456789abcdef";
+      
+      
+
+      let randomColor = () => {
+        let walletAddr  = "0x";
+        for (i = 0; i < 40; i++) {
+          walletAddr += walletString[Math.floor(Math.random() * walletString.length)];
+        }
+        return walletAddr;
+      }; 
+
+      let generateGrad = () => {
+        let address = randomColor();
+        outputAddr.value = `${address}` ; 
+        var data = address ;
+        var url = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${data}`;
+        code.src = url;
+        
+      };
+
+        let addWallet = () =>{
+            addBox.style.display="none"
+            uploadBox.style.display="block"
+            
+        };
+        
+      
+
+        let uploadDocs = (id) =>{
+          document.getElementById(id).style.display="none"
+          document.getElementById("progress").style.display="block"
+        };
+
+    
+      addBtn.addEventListener("click", () => { 
+        addBox.style.display ="block";
+      });
+      
+      copyBtn.addEventListener("click", () => {
+        outputAddr.select();
+        document.execCommand("copy");
+        alert( "Code Copied To Clipboard" + ` ${outputAddr.value}`);
+      });
+
+      
+      closeBtn.addEventListener("click", () => {
+        buyBox.style.display ="none";
+      });
+
+      generateBtn.addEventListener("click", generateGrad);
+      window.onload = generateGrad;
+      const splash = document.querySelector(".splash");
+
+document.addEventListener("DOMContentLoaded" , (e)=>{
+    setTimeout(()=>{
+        splash.classList.add("display-none");
+} , 8000);
+});
+
+alert("hey")
+

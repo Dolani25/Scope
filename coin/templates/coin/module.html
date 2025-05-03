@@ -1,0 +1,1005 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+
+ <meta name="viewport" content="width = device-width, initial-scale = 1, maximum-scale = 1, minimum-scale = 1, user-scalable = no, minimal-ui"/>
+
+  <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+
+    <style>
+        @import url('https://fonts.cdnfonts.com/css/nexa-bold');
+        
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
+
+        html{
+          scroll-behavior: smooth;
+        }
+        *{
+          user-select:none;
+        }
+        body {
+            font-family: 'Nexa', sans-serif ;
+            overflow-x: hidden; /* Prevent horizontal scrolling */
+        }
+        
+        ::selection {
+    background-color: orange;
+}
+
+        .filtered-div {
+          position: relative;
+            width: 100%;
+            max-width: 100%;
+            height: 10.9vh !important;
+            background: url('profilePic.jpg') center/cover;
+            
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-sizing: border-box; /* Include padding in the width calculation */
+            color: white; /* Set font color to white */
+            /*disable copy and paste*/
+-webkit-user-select: none;
+ -webkit-touch-callout: none;
+ -moz-user-select: none;
+ -ms-user-select: none; 
+user-select: none;
+text-decoration:none;
+
+        }
+
+        .content-wrapper {
+          top:0;
+          height: 100%;
+          box-sizing: border-box;
+          position: absolute;
+          
+            padding: 12px 20px;/* Increase the padding for space between content and border */
+            text-align: center;
+            width: 100%;
+            line-height: 0.9; /* Adjust line-height to reduce vertical space */
+            z-index: 10;
+        }
+        
+        .filter {
+          top:0;
+          height: 100%;
+          box-sizing: border-box;
+          position: absolute;
+          background: rgba(0,0,0,0.4);
+            width: 100%;
+            z-index: 5;
+        }
+        .topic, .lesson, .course {
+            letter-spacing: 0;
+            word-spacing: -1px;
+            margin: 0; /* Remove any default margin */
+        }
+
+
+        .topic {
+            text-align: center;
+            font-weight: 700;
+            font-size: 100%;
+        }
+        
+        .lesson , .course{
+          font-size: 60%;
+        }
+
+        .lesson {
+            text-align: right; /* Align the second paragraph to the right */
+        }
+        
+        .code{
+          padding: 10px;
+          border-radius: 3px;
+          background: #101010;
+          color:white;
+          font-size: 79%;
+          line-height: 1.7;
+        }
+        .note{
+          max-width:100vw;
+          padding: 20px 10px;
+           box-sizing: border-box; 
+        }
+        
+        .note p{
+          user-select:text;
+        }
+        
+        .tooltip{
+          position: absolute;
+          z-index: 11;
+          background: #101010;
+          border-radius: 5px;
+          padding: 0px 10px;
+          color:white;
+          display:none;
+          border: 1px solid #ccc;
+          list-style: none;
+          /*disable copy and paste*/
+-webkit-user-select: none;
+ -webkit-touch-callout: none;
+ -moz-user-select: none;
+ -ms-user-select: none; 
+user-select: none;
+text-decoration:none;
+}
+
+        .tooltip li{
+          padding:5px 10px;
+          font-size:14px;
+          border-bottom: 1px solid #606060;
+          cursor:pointer;
+        }
+        .tooltip li:hover{
+          background:#303030;
+        }
+        
+        .tooltip::after{
+          content:"";
+          display: block;
+          border:5px solid;
+          border-color:#101010 transparent transparent transparent;
+          position: absolute ;
+          left:50%;
+          transform:translateX(-50%);
+        }
+        
+        
+      
+video , audio{
+  width:100%;
+}
+.video-container {
+  border-radius: 3px; /* Adjust the value to your desired border radius */
+  overflow: hidden; /* This ensures that the video takes the shape of the border radius */
+}
+
+h1{
+  margin-top:2vh;
+  font-size:120%;
+}
+
+#back{
+  display:flex;
+  justify-content: center;
+  align-items:center;
+  border-radius:6px;
+  margin-right:auto;
+  height:30px;
+  width:30px;
+ /* margin-top:3vh;*/
+  color:white;
+  background:#101010;
+}
+
+img{
+  display: block;
+  margin: 2vh auto 2vh auto;
+  height:25vh;
+  width:80%;
+  box-shadow: 0 8px 8px rgba(10, 10, 10, 0.5);
+  border-radius: 3px;
+                
+}
+
+#progress {
+        height: 70px;
+        width: 70px;
+        position: fixed;
+        bottom: 20px;
+        right: 10px;
+        border-radius: 50%;
+        place-items: center;
+        -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        display: none;
+        cursor: pointer;
+        z-index: 999;
+                -webkit-tap-highlight-color: transparent;
+      }
+      #progress-value {
+        display: block;
+        height: calc(100% - 15px);
+        width: calc(100% - 15px);
+        background-color: white;
+        border-radius: 50%;
+        display: -ms-grid;
+        display: grid;
+        place-items: center;
+        font-weight: 500;
+        font-size: 30px;
+        color: #011d33;
+      }
+  
+      @-webkit-keyframes scale {
+        50% {
+          -webkit-transform: scale(0.92);
+                  transform: scale(0.92);
+        }
+      }
+      @keyframes scale {
+        50% {
+          -webkit-transform: scale(0.92);
+                  transform: scale(0.92);
+        }
+      }
+      @media screen and (max-width: 600px) {
+        #progress {
+          height: 60px;
+          width: 60px;
+        }
+        #progress-value {
+          font-size: 20px;
+        }
+      }
+
+header {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100vw;
+          background: #fff; /*#283038;*/
+          border-bottom:1px solid #E4E4E7;
+          height : 3.4vh;
+          z-index: 999999999;
+          padding : 5vmin;
+          display:flex;
+          align-items:center;
+         /* justify-content:space-between; */
+          overflow-x : hidden !important;
+          color : #2A2A2C; /*#101010*/
+          font-weight:600;
+          font-size:23px;
+          
+      }
+      
+ #logo{   display: block;
+ margin:auto;
+ width:100px !important;
+ height:100px !important;
+  
+}
+
+.note{
+  text-align:center;
+  padding-top: 11vh;
+}
+
+#tokenAddress{
+  margin-top:1vh;
+  margin-bottom:2vh;
+  display:flex;
+  justify-content: center;
+  align-items:center;
+}
+
+
+
+#priceInfo{
+  display:flex;
+  font-size:18px;
+  justify-content: space-between;
+}
+
+#progressOut{
+margin: 3vh 0 5px 0;
+height:6px;
+width: 100%;
+margin-bottom:4vw;
+background:#3870D8;
+border-radius: 7px;
+
+box-shadow: inset 5px 5px 10px #2b56a6, 
+            inset -5px -5px 10px #458aff;
+}
+
+#progressIn{
+background: #F89038;
+height:6px;
+width:35%;
+border-radius:4px;
+
+
+background: linear-gradient(145deg, #ff9a3c, #df8232);
+box-shadow:  2x 2px 0px #f68f37, 
+             -2px -2px 0px #fa9139;
+}
+
+
+ 
+
+#coinName{
+  text-align:center !important;
+  margin-left: -16vw;
+  flex:1;
+}
+
+ul{
+  display:flex;
+  flex-direction: column;
+  margin-top:50;
+}
+
+ul li{
+  list-style: none;
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+ul li .progress i{
+  display: none;
+}
+
+ul li .progress{
+  margin: 14px 0;
+  width:30px;
+  height:30px;
+  border-radius: 50%;
+  background:rgba(68,68,68,0.7);
+  display:grid;
+  place-items: center;
+  color:#fff;
+  position: relative;
+}
+
+ul li .text{
+  font-size:13px;
+  font-weight:400;
+}
+
+ul li .progress p{
+  font-size: 13px;
+}
+
+.progress::after{
+  content: " ";
+  position:absolute ;
+  width:4px;
+  height:40px;
+  background: rgba(68,68,68,0.7);
+  bottom:30px;
+  left:50%;
+  transform:translateX(-50%);
+  z-index:-1;
+}
+
+.one::after{
+  height:0;
+}
+
+ul li .progress{
+  margin: 0 20px;
+}
+
+ul li .active{
+  background:orange;
+}
+
+ul li .active::after{
+  background:orange;
+}
+
+li .active p{
+  display:none;
+}
+
+ul li .active i{
+  display:flex;
+  font-size:21px;
+}
+
+ .hexagon {
+   display: block;
+   border : 2px solid black;
+ margin:auto;
+  width: 90px;
+  height: 100px;
+  overflow: hidden;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  border-radius: 31px;
+
+}
+
+.hexagon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* TABS STYLING */
+
+
+* {
+    padding:0;
+    margin :0;
+    box-sizing:border-box
+    tap-highlight-color:transparent;
+    -webkit-tap-highlight-color:transparent;
+}
+
+:root {
+    --marker-color : hsl(210,80%,60%) ;
+    --bg:hsl(210,15%,12%);
+    --tab-color : hsl(210,15%,60%);
+    --tab-color-hover : hsl(210,15%,90%);
+    --active-tab-color : hsl(210,15%,96%);
+    --tab-bg-hover : hsl(210,15%,16%) ;
+}
+
+.wrapper {
+    
+    margin-top:3vh;
+    width : 100% ;
+    height: 7vh ;
+    border-radius:6px;
+    /*
+    width: 100vw; 
+  margin-left: -10px; 
+  margin-right: -10px; 
+  */
+  
+    overflow: hidden ;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background-color: var(--bg);
+    font-family: 'Montserrat', sans-serif;
+}
+
+.tab-container {
+    --left   : 0px;
+    --right  : 0px;
+    --offset : 16px ;
+    position: relative ;
+    display: flex ;
+    height: 2.3rem ;
+    background-color: var(--tab-container-bg);
+}
+
+.tab-container::before{
+    content: "";
+    position: absolute ;
+    bottom: 0 ;
+    left : calc(var(--left) + var(--offset)) ;
+    width: calc(var(--right) - var(--left) - 2 * var(--offset)) ;
+    height: 4px ;
+    background-color: var(--marker-color);
+    transition: all 100ms ease-out ;
+    border-radius: 4px ;
+}
+
+.tab {
+    padding: 0.9rem 0.9rem 1rem 0.9rem ;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor: pointer;
+    color: var(--tab-color);
+    font-weight: 700 ;
+    border-radius: 4px ;
+    transition: all 100ms ease-out ;
+}
+
+.tab[data-state="active"]{
+    background-color: var(--active-tab-bg);
+    color : var(--active-tab-color)
+}
+
+.tab:hover {
+    background-color: var(--tab-bg-hover);
+    color : var(--tab-color-hover)
+  }
+        .video-card {
+            margin-top:1vh;
+            margin-bottom:1vh;
+            background-color: #2a2d3e;
+            border-radius: 5px;
+            overflow: hidden;
+            max-width: 400px;
+        }
+        .video-placeholder {
+            background-color: #3a3d4e;
+            height: 150px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .play-button {
+            width: 45px;
+            height: 45px;
+            background-color: #ffffff;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .play-button::after {
+            content: '';
+            width: 0;
+            height: 0;
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            border-left: 20px solid #3a3d4e;
+            margin-left: 5px;
+        }
+        .video-info {
+            padding: 10px;
+            display: flex;
+            align-items:center;
+        }
+        .date {
+            height:8vh;
+            width:26vw;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            text-align:center;
+            padding:1vh;
+            border-radius:4px;
+            background:  rgba(100,100,100,0.7);
+            font-size: 14px;
+            color: #8c8f9a;
+            margin-right: 15px;
+        }
+        .title {
+            font-size: 12px;
+            font-weight: bold;
+            flex-grow: 1;
+            color:#fff;
+        }
+        
+       .status {
+            margin-top: 20px;
+        }
+        .status-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .status-progress {
+            margin-left: 10px;
+            position: relative;
+        }
+        .status-progress::before {
+            content: '';
+            position: absolute;
+            left: 9px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: #6200ee;
+            z-index: 1;
+        }
+        .status-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        .status-dot {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #6200ee;
+            margin-right: 10px;
+            z-index: 2;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .status-dot::after {
+            content: url("data:image/svg+xml,%3Csvg fill='%23fff' version='1.1' id='Capa_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='18px' height='18px' viewBox='-45.7 -45.7 137.10 137.10' xml:space='preserve' stroke='%23fff' stroke-width='2.879163'%3E%3Cg id='SVGRepo_bgCarrier' stroke-width='0'%3E%3C/g%3E%3Cg id='SVGRepo_tracerCarrier' stroke-linecap='round' stroke-linejoin='round' stroke='%23ff' stroke-width='6.215336000000001'%3E%3Cg%3E%3Cg%3E%3Cpath d='M20.687,38.332c-2.072,2.072-5.434,2.072-7.505,0L1.554,26.704c-2.072-2.071-2.072-5.433,0-7.504 c2.071-2.072,5.433-2.072,7.505,0l6.928,6.927c0.523,0.522,1.372,0.522,1.896,0L36.642,7.368c2.071-2.072,5.433-2.072,7.505,0 c0.995,0.995,1.554,2.345,1.554,3.752c0,1.407-0.559,2.757-1.554,3.752L20.687,38.332z'%3E%3C/path%3E%3C/g%3E%3C/g%3E%3C/g%3E%3Cg id='SVGRepo_iconCarrier'%3E%3Cg%3E%3Cg%3E%3Cpath d='M20.687,38.332c-2.072,2.072-5.434,2.072-7.505,0L1.554,26.704c-2.072-2.071-2.072-5.433,0-7.504 c2.071-2.072,5.433-2.072,7.505,0l6.928,6.927c0.523,0.522,1.372,0.522,1.896,0L36.642,7.368c2.071-2.072,5.433-2.072,7.505,0 c0.995,0.995,1.554,2.345,1.554,3.752c0,1.407-0.559,2.757-1.554,3.752L20.687,38.332z'%3E%3C/path%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E");;
+            color: white;
+            font-size: 12px;
+        }
+        .status-text {
+            text-align: left;
+            font-size: 14px;
+            flex: 1;
+        }
+        .status-item:last-child .status-dot {
+            width: 18px;
+            height: 18px;
+            border:2px solid #6200ee;
+            background-color: #e0e0e0;
+        }
+        .status-item:last-child .status-dot::after {
+            content: '';
+        }
+        .status-item:last-child .status-text {
+            color: #999;
+        }
+        
+                .gallery-container {
+            width: 100%;
+            overflow-x: auto;
+            white-space: nowrap;
+            padding: 20px 0;
+        }
+        .gallery-item {
+            display: inline-block;
+            margin-right: 10px;
+        }
+  
+        .gallery-item img {
+    height: 200px;
+    width: auto;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.gallery-item img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15), 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+        .fullscreen {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        .fullscreen img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: cover;
+        }
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+                .social-links-container {
+                width:90%;
+            background-color: #f5f5f5;
+            border-radius: 8px;
+            padding: 15px;
+            display: inline-flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .social-link {
+            margin: 0 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .social-link:hover {
+            transform: translateY(-3px);
+        }
+
+        .social-icon {
+            width: 24px;
+            height: 24px;
+            fill: #333;
+        }
+
+        /* Responsive styles */
+        @media (min-width: 768px) {
+            .container {
+                max-width: 600px;
+                margin: 20px auto;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .container {
+                max-width: 800px;
+            }
+            .status-progress {
+                margin-left: 20px;
+            }
+            .status-dot {
+                width: 24px;
+                height: 24px;
+            }
+            .status-dot::after {
+                font-size: 14px;
+            }
+            .status-text {
+                font-size: 16px;
+            }
+        }
+
+        @media (min-width: 1280px) {
+            .container {
+                max-width: 1000px;
+            }
+        }
+        #bigBack{
+          margin-left:-20px;
+          padding-left:20px;
+          display:flex;
+  justify-content: center;
+  align-items:center;
+  border-radius:6px;
+  margin-right:auto;
+  height:58px;
+  width:40px;
+ /* margin-top:3vh;*/
+  background:inherit;
+        }
+    </style>
+</head>
+<body>
+    <header>
+      <a href="{% url 'index' %}"><div id="bigBack" onClick="btnClicked();">
+      <div id="back" onClick="btnClicked();" >
+       <svg width="20px" height="20px" viewBox="0 0 1024 1024" fill="#fff " class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" stroke="#fff " stroke-width="58"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M669.6 849.6c8.8 8 22.4 7.2 30.4-1.6s7.2-22.4-1.6-30.4l-309.6-280c-8-7.2-8-17.6 0-24.8l309.6-270.4c8.8-8 9.6-21.6 2.4-30.4-8-8.8-21.6-9.6-30.4-2.4L360.8 480.8c-27.2 24-28 64-0.8 88.8l309.6 280z" fill=""></path></g></svg>
+      </div></div></a>
+      <span id="coinName">{{airdrop.name}}</span>
+    </header>
+   <!-- <div class="filtered-div">
+        <div class="filter"></div>
+        <div class="content-wrapper">
+            <p class="course">30 DAYS OF REACT</p>
+            <p class="lesson">LESSON 03</p>
+            <p class="topic">FIRST COMPONENTS</p>
+        </div>
+      </div> -->
+      <div class="note">
+        <div id="progress">
+      <span id="progress-value">
+          <i class="fas fa-arrow-up"></i>
+      </span>
+    </div>
+      <div class="hexagon">
+        <img id="logo" src="{% static 'core/images/profilePic.jpg' %}" crossorigin="anonymous"/>
+        </div>
+     <h1>{{airdrop.name}}{{airdrop.ticker}}</h1>
+    <span id="tokenAddress">{{airdrop.contract_add}}<span class="copySvg">
+    <svg width="25px" height="25px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M10 8V7C10 6.05719 10 5.58579 10.2929 5.29289C10.5858 5 11.0572 5 12 5H17C17.9428 5 18.4142 5 18.7071 5.29289C19 5.58579 19 6.05719 19 7V12C19 12.9428 19 13.4142 18.7071 13.7071C18.4142 14 17.9428 14 17 14H16M7 19H12C12.9428 19 13.4142 19 13.7071 18.7071C14 18.4142 14 17.9428 14 17V12C14 11.0572 14 10.5858 13.7071 10.2929C13.4142 10 12.9428 10 12 10H7C6.05719 10 5.58579 10 5.29289 10.2929C5 10.5858 5 11.0572 5 12V17C5 17.9428 5 18.4142 5.29289 18.7071C5.58579 19 6.05719 19 7 19Z" stroke="#464455" stroke-linecap="round" stroke-linejoin="round"></path></g></svg>
+    </span>
+    </span>
+    
+    <p>{{airdrop.description}}</p>
+     
+<div id="progressOut" style="background-color: {{ airdrop.color.progress_out_color }};">
+<div id="progressIn" style="background-color: {{ airdrop.color.progress_in_color }};"></div></div>
+
+<div id="priceInfo">
+<span>CAPITAL</span>
+<span>${{airdrop.startprice}}</span>
+</div>
+
+<!--    
+<div class="video-container">
+<video controls>
+  <source src="gh.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+</div>
+
+<audio controls>
+  <source src="your-audio.mp3" type="audio/mpeg">
+  Your browser does not support the audio tag.
+</audio>
+-->
+
+ <!-- T A S K-->
+ 
+ 
+        <div class="status">
+            <div class="status-header">
+                <span>TASK STATUS</span>
+                <span style="color: #ffa000;">IN PROGRESS</span>
+            </div>
+            <div class="status-progress">
+                <div class="status-item">
+                    <div class="status-dot"></div>
+                    <div class="status-text">You initiated a ₦100.00 debit transaction<br>15 SEPTEMBER 2024, 04:18 PM</div>
+                </div>
+                <div class="status-item">
+                    <div class="status-dot"></div>
+                    <div class="status-text">Transaction is in transit to recipient's bank<br>15 SEPTEMBER 2024, 04:18 PM</div>
+                </div>
+                <div class="status-item">
+                    <div class="status-dot"></div>
+                    <div class="status-text">Received by recipient's bank</div>
+                </div>
+            </div>
+        </div>
+
+
+ 
+ 
+     <div class="gallery-container">
+        <div class="gallery-item"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTiBUHziT6BBm1PaM3EW2MgUnFJvj-5gMwMTjDDeMhZ82EdY1Mu" alt="Tokenomics" onclick="openFullscreen(this.src)"></div>
+        <div class="gallery-item"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTiBUHziT6BBm1PaM3EW2MgUnFJvj-5gMwMTjDDeMhZ82EdY1Mu" alt="Distribution Chart" onclick="openFullscreen(this.src)"></div>
+        <div class="gallery-item"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTiBUHziT6BBm1PaM3EW2MgUnFJvj-5gMwMTjDDeMhZ82EdY1Mu" alt="Tweet Screenshot" onclick="openFullscreen(this.src)"></div>
+        <div class="gallery-item"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTiBUHziT6BBm1PaM3EW2MgUnFJvj-5gMwMTjDDeMhZ82EdY1Mu" alt="Marketing Image" onclick="openFullscreen(this.src)"></div>
+        <!-- Add more images as needed -->
+    </div>
+
+    <div id="fullscreenView" class="fullscreen" onclick="closeFullscreen()">
+        <span class="close-btn">&times;</span>
+        <img id="fullscreenImage" src="" alt="Fullscreen Image">
+    </div>
+
+ 
+  <div class="social-links-container">
+        <a href="#" class="social-link" aria-label="X (formerly Twitter)">
+            <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932L18.901 1.153ZM17.61 20.644h2.039L6.486 3.24H4.298L17.61 20.644Z" />
+            </svg>
+        </a>
+        <a href="#" class="social-link" aria-label="Telegram">
+            <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M21.75 3.32a1.5 1.5 0 0 0-1.52-.32L2.23 9a1.5 1.5 0 0 0 0 2.81l5.25 2.17L15.75 7a.75.75 0 0 1 1 1.11l-7 7.89v3.75a1.5 1.5 0 0 0 2.61 1l3.17-3.17 4.75 2a1.5 1.5 0 0 0 2.12-1.07l3-16.5a1.5 1.5 0 0 0-.4-1.39z"></path>
+            </svg>
+        </a>
+        <a href="#" class="social-link" aria-label="Discord">
+            <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"></path>
+            </svg>
+        </a>
+        <a href="#" class="social-link" aria-label="Website">
+            <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"></path>
+            </svg>
+        </a>
+    </div>
+ 
+ 
+
+<!-- Multimedia tab -->
+  <div class="wrapper">
+        <div class="tab-container">
+            <div class="tab">Events</div>
+            <div class="tab">News</div>
+            <div class="tab">Videos</div>
+            <div class="tab">Posts</div>
+        </div>
+    </div>
+
+      <div class="video-card">
+        <div class="video-placeholder">
+            <div class="play-button"></div>
+        </div>
+        <div class="video-info">
+            <div class="date">
+                Aug 05<br>
+                2021
+            </div>
+            <div class="title">
+                Ethereum EIP 1559 explained, US infrastructure bill goes after crypto
+            </div>
+        </div>
+    </div>
+          <div class="video-card">
+        <div class="video-placeholder">
+            <div class="play-button"></div>
+        </div>
+        <div class="video-info">
+            <div class="date">
+                Aug 05<br>
+                2021
+            </div>
+            <div class="title">
+                Ethereum EIP 1559 explained, US infrastructure bill goes after crypto
+            </div>
+        </div>
+    </div>
+        
+      </div>
+      
+    
+
+<script>
+
+document.querySelector("#bigBack").addEventListener('click', () => {
+            history.back();
+        });
+        
+
+// TABS JAVASCRIPT
+
+
+let clock = 0 ;
+
+window.onload = () => {
+    let tabs = document.querySelectorAll(".tab");
+    tabs.forEach((tab,i) => {
+        tab.addEventListener("click",()=>{changeTab(i);});
+    });
+    tabs[0].setAttribute("data-state","active");
+    changeTab(0);
+}
+
+function changeTab(index){
+    let tabs = document.querySelectorAll(".tab");
+    let activeTab = document.querySelector(".tab[data-state='active']");
+    activeTab && activeTab.setAttribute("data-state","");
+    tabs[index] && tabs[index].setAttribute("data-state","active");
+
+    updateMarker(activeTab,tabs[index]);
+    // console.log("Active Tab : ",index);
+}
+
+function updateMarker(lastActiveTab,currentActiveTab){
+    let tabContainer = document.querySelector(".tab-container");
+    let lastActiveTabBoundingBox = lastActiveTab.getBoundingClientRect();
+    let currentActiveTabBoundingBox = currentActiveTab.getBoundingClientRect();
+    let tabContainerTabBoundingBox = tabContainer.getBoundingClientRect();
+
+    let left  = currentActiveTabBoundingBox.x - tabContainerTabBoundingBox.x ;
+    let right = left + currentActiveTabBoundingBox.width ;
+    if(lastActiveTabBoundingBox.x < currentActiveTabBoundingBox.x){
+        tabContainer.style.setProperty("--right",right+"px");
+        clearTimeout(clock);
+        clock = setTimeout(()=>{tabContainer.style.setProperty("--left",left+"px");},200);
+    } else {
+        tabContainer.style.setProperty("--left",left+"px");
+        clearTimeout(clock);
+        clock = setTimeout(()=>{tabContainer.style.setProperty("--right",right+"px");},200);
+    }
+
+    // console.log(left,right)
+}
+
+//scroll progress-value
+let calcScrollValue = () => {
+        let scrollProgess = document.getElementById("progress");
+        let progressValue = document.getElementById("progress-value");
+
+        let pos = document.documentElement.scrollTop;
+        let calcHeight =
+          document.documentElement.scrollHeight -
+          document.documentElement.clientHeight;
+        let scrollValue = Math.round((pos * 100) / calcHeight);
+
+        scrollProgess.style.background = `conic-gradient(#03CC65 ${scrollValue}%, #d7d7d7 ${scrollValue}%)`;
+
+        if (pos > 100) {
+          scrollProgess.style.display = "grid";
+        } else {
+          scrollProgess.style.display = "none";
+        }
+        scrollProgess.addEventListener("click", () => {
+          document.documentElement.scrollTop = 0;
+        });
+      };
+      window.onscroll = calcScrollValue;
+      window.onload = calcScrollValue;
+
+function openFullscreen(imgSrc) {
+            document.getElementById('fullscreenImage').src = imgSrc;
+            document.getElementById('fullscreenView').style.display = 'flex';
+        }
+
+        function closeFullscreen() {
+            document.getElementById('fullscreenView').style.display = 'none';
+        }
+
+        // Close fullscreen view when Escape key is pressed
+        document.addEventListener('keydown', function(event) {
+            if (event.key === "Escape") {
+                closeFullscreen();
+            }
+        });
+  
+</script>
+</body>
+</html>

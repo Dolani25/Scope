@@ -1,0 +1,22 @@
+
+<!-- core/templates/core/event_list.html -->
+
+{% extends 'core/base.html' %}
+
+{%load static %}
+
+{% block title %} Scope | Events {% endblock %}
+
+{% block content %}
+
+  <h1>Event Calendar</h1>
+
+  <ul>
+    {% for event in events %}
+      <li>
+        {{ event.name }} ({{ event.date }})
+      </li>
+    {% endfor %}
+  </ul>
+
+{% endblock %}

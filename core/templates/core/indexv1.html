@@ -1,0 +1,1202 @@
+<!-- Created by Dolani -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Scope | Home</title>
+    
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<script src="https://kit.fontawesome.com/11114d5bad.js" crossorigin="anonymous"></script>
+
+<script src="https://kit.fontawesome.com/f57ad55ce5.js" crossorigin="anonymous"></script>
+      
+    <style>
+            @import url('https://fonts.cdnfonts.com/css/nexa-bold');
+
+        html{
+          scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Nexa', sans-serif;
+            overflow-x: hidden; /* Prevent horizontal scrolling */
+        }
+        
+            /* Created by Dolani */
+
+* {
+        padding: 0;
+        margin: 0;
+        -webkit-box-sizing: border-box;
+                box-sizing: border-box;
+        border: none;
+        outline: none;
+        
+      }
+
+body,HTML,*{
+/*disable copy and paste*/
+-webkit-user-select: none;
+ -webkit-touch-callout: none;
+ -moz-user-select: none;
+ -ms-user-select: none; 
+user-select: none;
+text-decoration:none;
+
+}
+
+
+
+      body {
+        height: 100vh;
+        background: #ffffff;
+      }
+      .top{
+          background: #283038;
+          height : 10%;
+          padding : 5vmin;
+          display:flex;
+          justify-content:space-between;
+          overflow-x : hidden !important;
+          color : #f1f1f1;
+          position : sticky;
+          top : 0;
+      }
+      
+      .bottom{
+          padding : 4vmin 4.6vmin 22vmin 4.6vmin;
+          text-align: center;
+          
+        
+          background : inherit;
+          height : 90%;
+          overflow-x : hidden !important;
+      }
+      .wrapper {
+        position : absolute;
+        top : 34%;
+        z-index : 95;
+          -webkit-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+                transform: translate(-50%, -50%);
+        left: 50%;
+        width: 92vmin;
+        background-color: #ffffff;
+        padding:  3px;
+        border-radius: 30px;
+        
+        -webkit-box-shadow: 0 10px 25px rgba(60, 60, 100, 0.35);
+                box-shadow: 0 10px 25px rgba(60, 60, 100, 0.35);
+      }
+      
+      footer{
+        background-color:#F6F6F6;/*#283038*/
+        -webkit-box-shadow: 0 20px 25px rgba(60, 60, 100, 0.15);
+                box-shadow: 0 20px 25px rgba(60, 60, 100, 0.15);
+                
+        display: flex;
+        border: 1px solid rgba(5,5,5,.15);
+        justify-content : space-around;
+        text-align: center;
+        padding: 5px;
+        border-radius: 13px;
+        position : fixed;
+        bottom : -18px;
+        -webkit-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+                transform: translate(-50%, -50%);
+        left: 50%;
+        width: 95vmin;
+        color: #D0D0D8;
+        text-decoration: none;
+        font-weight: bold;
+      }
+      #qrCode {
+        width: 40vmin;
+        height: 40vmin;
+        border-radius: 5px;
+        
+        padding: 5px; 
+        background: #07f49e; 
+        opacity: 1;
+        visibility: visible; 
+        box-shadow: 0 10px 25px -10px #07f49e; 
+        transition: 0.1s;
+       display : block;
+       margin : auto;
+      }
+      
+      #output-addr {
+        background-color: #f1f5fc;
+        font-size: 4vmin;
+        font-weight: 400;
+        color: #3f415f;
+        width: 100%;
+        padding: 15px 10px;
+        border-radius: 5px;
+        margin: 20px 0 40px 0;
+      }
+      .btn-container {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-pack: distribute;
+            justify-content: space-between;
+      }
+      .btn-container button {
+        background-color: #3EB489;
+        min-width: 40%;
+        padding: 15px 0;
+        color: #282830;
+        border-radius: 30px;
+        font-size: 3vmin;
+        font-weight: 700;
+      }
+
+    #invisible-btn{
+        background : inherit;
+        font-size : 4.2vmin;
+        margin-left : 4vmin;
+    }
+    
+    #buyBtn{
+        font-size : 4.2vmin;
+    }
+    
+    select{
+        width : 14vmin;
+        background : inherit;
+        color : #888888;
+        margin-left : -5px;
+    }
+    
+    footer button {
+        background-color: inherit;
+        width: 50px;
+        height : 50px;
+        padding: 2px; /* formerly 10px*/
+        color: #282830;/*#D6B9FC*/
+        border-radius: 50%;
+        font-size: 3vmin;
+        font-weight: 400;
+      }
+      
+      footer button:not(:first-child){
+          background : inherit;
+          color: #888888;
+      }
+      
+      .box {
+                    position : relative;
+        margin-bottom : 11px;
+        width: 100%;
+        background-color: #ffffff;
+        padding: 15px;
+        border-radius: 8px;
+        display : flex;
+        justify-content : space-between;
+        -webkit-box-shadow: 0 10px 25px rgba(60, 60, 100, 0.35);
+                box-shadow: 0 10px 25px rgba(60, 60, 100, 0.35);
+      }
+      
+        .add-box {
+        margin-bottom : 11px;
+        width: 45%;
+        background-color: #FE4F30 ;
+        padding: 14px;
+        text-align : center;
+        color : white;
+        display: block;
+        margin: auto;
+        margin-top:25px;
+        
+        border-radius: 8px;
+        
+        font-size : 14px;
+       font-weight : 400;
+       
+      }
+
+     .tab{
+        display : flex;
+        justify-content : space-between;
+        align-items : center;
+        align-content: center;
+        overflow : hidden;
+        font-size:20px;
+        margin-bottom : 10vmin;
+        padding : 0 1vmin 0 1vmin;
+    }
+    
+    .tab span{
+        
+        width :50%;
+    }
+    
+    .buy , #addBox, #uploadBox{
+        width: 95vmin;
+        position: fixed;
+        -webkit-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+                transform: translate(-50%, -50%);
+        left: 50%;
+        top: 50%;
+        z-index : 50;
+        background  : #ffffff;
+        border-radius : 5px;
+        display : none; 
+      }
+      
+      
+      
+            .wrapper2 {
+        width: 100%;
+        background-color: #ffffff;
+        padding: 50px 30px;
+        border-radius: 8px;
+        -webkit-box-shadow: 0 10px 25px rgba(60, 60, 100, 0.35);
+                box-shadow: 0 10px 25px rgba(60, 60, 100, 0.35);
+      }
+      
+      #closeBtn{
+          position : absolute;
+          height : 60px;
+          width : 60px;
+          top : -28px;
+          right : -28px;
+          background : #ffffff;
+          color : grey;
+          border-radius : 50%;
+          font-size : 50px;
+          text-align : center;
+          box-shadow: 0 10px 25px rgba(60, 60, 100, 0.35);
+      }
+      
+      .splash{
+position : fixed;
+
+top : 0;
+font-family: 'Croissant One'!important
+left : 0;
+width : 100vw !important;  /*100vh */
+height : 100vh !important;
+overflow-y : hidden !important;
+background : #101010; 
+
+
+z-index : 1000;
+color : #fff; /*#283038;*/
+text-align : center;
+font-size : 20px;
+font-weight : 700;
+line-height : 98vh;  /*60vh */
+display : flex;
+display : none; /*remove after editing*/
+align-items : center;
+justify-content : center ;
+
+}
+
+.splash.display-none{
+position : fixed;
+top : 0;
+left : 0;
+opacity : 0;
+width : 100%;
+height : 100vh;
+background : black;
+z-index : -10;
+color : white;
+text-align : center;
+line-height : 90vh;
+transition : all 0.5s;
+}
+
+@keyframes fadeIn{
+    to{
+        opacity : 1;
+}
+}
+
+.fade-in{
+    color : #fff; /*#F0F0F0;*/
+    font-family: 'Croissant One', cursive;
+    font-weight : 500;
+    font-size : 2.3em;
+    letter-spacing : -5px;
+    opacity : 0;
+    animation : fadeIn 1s ease-in forwards;
+}
+
+.code {
+     margin-top : 10px; 
+     height : 100%;
+     width : 100%;
+     }
+
+
+.coins{
+    height : 8vh;
+    width : 8vh;
+    border-radius : 50%;   
+}
+
+
+button img{
+    height : 25px;
+    width : 25px
+    color : grey;
+}
+
+#appName h3{
+    
+    font-size : 1.9em;
+    font-weight : 300;
+    letter-spacing : -3px;
+    
+    font-family: 'Croissant One';
+    background: -webkit-linear-gradient(#42BB0C, #40B808);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+
+
+#appName{
+    flex :1.88;
+}
+
+
+#appName img{
+    margin-top:-5px;
+    height : 36px;
+    width : 36px;
+    float: left;
+    
+}
+
+.fas{
+    color: grey;
+    font-size : 24px;
+}
+
+.fa-bars , .hamburger{
+    flex : 1;
+}
+
+
+
+#flexed{
+    display : flex;
+    width:100%;
+    align-items : center;
+    align-content : space-between;
+    justify-content : start;
+    margin-top:1vh;
+    margin-bottom : 3.5vh;
+}
+
+#select2{
+    width :100%;
+    font-size : 110%;
+    font-weight : 600;
+}
+
+.box > div{ display:flex; justify-content:center; } 
+
+.down1{ flex-basis:21.66%; }
+
+.down1 svg{   width:17vw; height:17vw;} 
+ 
+.down2{ flex-basis:48.33%;
+        margin-top : .8vh;
+}
+
+.down3{ flex-basis:30%;
+        margin-top : .8vh;
+}
+
+#currPrice , #coinPossessed{
+    font-size:92%;
+    font-weight:300;
+    color:grey;
+}
+
+#priceChange{
+    font-size : 85%;
+    color : green;
+}
+
+#priceChangeRed{
+    font-size : 85%;
+    color : red;
+}
+
+.balance-wrapper{
+    display:flex;
+    flex-direction : column;
+    align-items : center;
+    justify-content: center;
+}
+
+.bottom h3{
+  line-height: 2.5em;
+}
+
+.bottom p3{
+  color : #CFCFCF;
+  font-size:15px;
+}
+
+#addBox .wrapper2 form{
+  line-height: 2em;
+  color:black ;/*#283038;*/
+}
+
+#addBox .wrapper2 form h3{
+  margin-bottom:0.8em;
+  font-weight: 400;
+}
+
+#addBox .wrapper2 form label{
+  display:absolute;
+  font-weight: 700;
+  margin :6px !important;
+  
+}
+
+#progress{
+  display: none;
+  margin-top:1.4em;
+}
+
+#progressOut{
+margin: 5px 0 5px 0;
+height:6px;
+width: 100%;
+margin-bottom:4vw;
+background:#3870D8;
+border-radius: 7px;
+
+box-shadow: inset 5px 5px 10px #2b56a6, 
+            inset -5px -5px 10px #458aff;
+}
+
+#progressIn{
+background: #F89038;
+height:6px;
+width:35%;
+border-radius:4px;
+
+
+background: linear-gradient(145deg, #ff9a3c, #df8232);
+box-shadow:  2x 2px 0px #f68f37, 
+             -2px -2px 0px #fa9139;
+}
+
+
+/*Nav styling*/
+nav{
+padding:16px;
+display: none ;
+width:85% !important;
+height:100vh !important;
+color : #101010;
+border-radius: 0px;
+background: #fff;
+z-index:100 !important;
+}
+
+/*Nav animations*/
+nav {
+  -webkit-animation: slideRight 1s;
+  animation: slideRight 1s
+}
+
+@-webkit-keyframes slideRight {
+  from {-webkit-transform: translateX(-50vw);
+             opacity:0;
+} 
+  to {-webkit-transform: translateX(0px)
+        opacity:1;
+}
+}
+  
+@keyframes slideRight {
+  from {transform: translateX(-50vw);
+             opacity:0;
+} 
+  to {transform: translateX(0px);
+        opacity:1;
+}
+}
+
+
+
+#profilePic{
+height:47px;
+width:47px;
+margin-top : -1.5vw;
+margin-bottom:1.8vw;
+border-radius:50%;
+border:1px solid grey;
+
+background: #F6F6F6;
+}
+
+
+#progressOut{
+margin: 5px 0 5px 0;
+height:6px;
+width: 100%;
+margin-bottom:4vw;
+background:#3870D8;
+border-radius: 7px;
+
+box-shadow: inset 5px 5px 10px #2b56a6, 
+            inset -5px -5px 10px #458aff;
+}
+
+#progressIn{
+background: #F89038;
+height:6px;
+width:35%;
+border-radius:4px;
+
+
+background: linear-gradient(145deg, #ff9a3c, #df8232);
+box-shadow:  2x 2px 0px #f68f37, 
+             -2px -2px 0px #fa9139;
+}
+
+#Username{
+font-size:107%;
+color: #101010;
+}
+
+
+ul{
+padding:0;
+margin:0;
+list-style-type:none;
+font-weight:bold;
+color:#101010;
+margin:0;
+padding:0;
+font-family: San-serif;
+list-style:none;
+text-decoration: none;
+overflow: hidden;
+}
+
+.fa{
+font-size:26px;
+}
+.fas ,.far{
+color:#6090E0;
+}
+
+
+
+.item{
+overflow: hidden;
+}
+
+.btn{
+display: block;
+padding:16px ; /*formerly 16px 18px*/
+padding-left : 16px;/*10 px before controls padding*/
+background: inherit;
+font-size : 95%;
+font-weight : 400;
+position: relative;
+color:rgba(16,16,16,0.95)!important;
+}
+
+.btn:before{
+content:"";
+position: absolute;
+width:14px;
+height:14px;
+background: inherit;
+left:20px;
+bottom:-7px;
+transform: rotate(45deg);
+}
+
+.btn svg{
+margin-right:26px !important;
+}
+
+.smenu{
+background:#333;
+overflow: hidden;
+transition:max-height 0.3s;
+max-height:0;
+font-size : 95%;
+font-weight : 400;
+color:rgba(16,16,16,0.95)!important
+}
+
+
+
+.colon{
+   margin-top:5px;
+   }
+   
+   .fas{
+      font-size : 19px;
+      margin-right : 4.2px;
+      }
+      
+.filter{
+    background : rgba(0,0,0,0.5);
+    position : fixed;
+    top:0;
+    left:0;
+    z-index : 99;
+    width : 100vw;
+    }
+
+    
+.navtop{
+display: flex;
+justify-content: space-between;
+margin-bottom:10px;
+color:#101010;
+}
+
+.rank_points{
+  display: flex;
+justify-content: space-around;
+margin-bottom:10px;
+color:#101010;
+}
+
+.rank_points h5{
+  height : 40px;
+  width: 40px;
+  background: #D6B9FC;
+  padding : 8px;
+  border-radius:50%;
+}
+
+.wrapper3{
+  width:100%;
+  padding: 30px;
+        background-color: #ffffff;
+        padding: 50px 30px;
+        border-radius: 8px;
+        -webkit-box-shadow: 0 10px 25px rgba(60, 60, 100, 0.35);
+                box-shadow: 0 10px 25px rgba(60, 60, 100, 0.35);
+}
+
+.wrapper3 h3{
+  text-align: center;
+  font-weight: 400;
+}
+
+.wrapper3 form{
+  height: 167px;
+  margin: 30px 0 ;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border-radius:5px;
+  border:2px dashed #FE4F30 ;
+}
+
+.wrapper3 form :where(i,p){
+  color :#FE4F30;
+}
+
+.wrapper3 form p{
+  font-size: 16px;
+  margin-top:15px;
+}
+
+section .row{
+  background:#FEA898;
+  list-style: none;
+  padding:15px 20px;
+  display: flex;
+  border-radius: 5px;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+
+section .row i{
+  font-size: 30px;
+  color:#FE4F30;
+}
+
+.progress-area .row .content{
+  width:100%;
+  margin-left:15px;
+}
+
+.progress-area .progress-bar{
+  height: 6px;
+  width:100%;
+}
+
+.progress-area .details{
+  display: flex;
+  margin-bottom: 7px;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.uploaded-area .row .content{
+  display:flex;
+  margin-left:15px; /* ithink it should be removed*/
+  align-items:center;
+}
+
+.uploaded-area .fa-check{
+  font-size:16px;
+  color:#FE4F30;
+}
+
+
+section .row .content{
+  width:100%;
+  margin-left:15px;
+}
+section .details span{
+  font-size: 14px;
+}
+
+
+
+
+
+
+
+.progress-area .content .progress-bar{
+  height: 6px;
+  width: 100%;
+  margin-bottom: 4px;
+  background: #fff;
+  border-radius: 30px;
+}
+.content .progress-bar .progress{
+  height: 100%;
+  width: 0%;
+  background: #6990F2;
+  border-radius: inherit;
+}
+.uploaded-area{
+  max-height: 232px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  
+}
+.uploaded-area.onprogress{
+  max-height: 150px;
+}
+.uploaded-area::-webkit-scrollbar{
+  width: 0px;
+}
+.uploaded-area .row .content{
+  display: flex;
+  align-items: center;
+}
+.uploaded-area .row .details{
+  display: flex;
+  margin-left: 15px;
+  flex-direction: column;
+}
+.uploaded-area .row .details .size{
+  color: #404040;
+  font-size: 11px;
+}
+.uploaded-area i.fa-check{
+  font-size: 16px;
+}
+
+
+::selection{
+  color: #fff;
+  background: #6990F2;
+}
+.wrapper3{
+  box-shadow: 7px 7px 12px rgba(0,0,0,0.05);
+}
+
+
+#formUpload :where(i, p){
+  color: #6990F2;
+}
+#formUpload i{
+  font-size: 50px;
+}
+#formUpload p{
+  margin-top: 15px;
+  font-size: 16px;
+}
+
+.item .btn svg{
+  margin-bottom:-6px !important;
+  margin-right : 12px;
+}
+
+#userVerified{
+  margin-top:-.9vw;
+}
+
+#bell svg{
+  height:24px;
+  width:24px;
+  position:relative;
+}
+
+#notification{
+  font-size:70%;
+  position:absolute;
+  top:5px;
+  right:9.5px;
+  height:18px;
+  width:18px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:50%;
+  background:rgba(220,0,0,0.9);
+}
+    </style>
+  </head>
+  <body>
+  
+<!--  S P L A S H S C R E E N-->
+
+<div class="splash">
+<h1 class="fade-in"> Swift</h1>
+</div>
+    <div class="top">
+    <div id="flexed">
+    
+    <!--<i class="fas fa-bars"></i> -->
+    <!--hamburger icon svg-->
+    <div class="hamburger" onclick="toggleNav();"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></div>
+    
+    
+    <span id="appName" >
+        
+        <h3><!--<img src="https://img.icons8.com/color/100/000000/mint.png"/> --> Scope</span></h3>
+    </span>
+    
+    <!-- Notification icon svg-->
+    <div>
+    <div id="bell">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 17H2a3 3 0 0 0 3-3V9a7 7 0 0 1 14 0v5a3 3 0 0 0 3 3zm-8.27 4a2 2 0 0 1-3.46 0"></path></svg></div>
+      <span id="notification">3</span>
+    </div>
+        
+    </div>
+    
+
+    
+      </div>
+      
+      <div class="bottom">
+            <div class="tab">
+              <h5 style="font-weight : 800;">Airdrops</h5>
+              <p1 style="color : grey;">...</p1>
+           </div>
+           
+            {% for airdrop in airdrops %}
+                  <a href="{% url 'coin:module' airdrop.id %}" >
+      <div class='box' id='${index == 0 && 'wheat'}' >
+   
+     {% if airdrop.image.url != "" %}
+            <span class="down1">
+            <svg viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg">   <defs>     <pattern id="img" patternUnits="userSpaceOnUse" width="100" height="100">       <image xlink:href="{{airdrop.image.url}}" x="-25" width="150" height="100" />     </pattern>   </defs>   <polygon points="50 1 95 25 95 75 50 99 5 75 5 25" fill="url(#img)"/> </svg></span>
+            {% else %}
+            <span class="down1">
+            <svg viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg">   <defs>     <pattern id="img" patternUnits="userSpaceOnUse" width="100" height="100">       <image xlink:href="https://farm9.staticflickr.com/8461/8048823381_0fbc2d8efb.jpg" x="-25" width="150" height="100" />     </pattern>   </defs>   <polygon points="50 1 95 25 95 75 50 99 5 75 5 25" fill="url(#img)"/> </svg></span>
+            
+              {% endif %}
+         
+                          <span class="down2">
+                  <h4 id="coinName">{{coin.name}}</h4>
+                  <span id="currPrice">$0<span id="priceChange" onclick ="this.id = 'priceChangeRed';"                    >change%</span></span>
+              </span>
+              <span class="down3">
+                  <h4 id="coinValue">Easy</h4>
+                  <span id="coinPossessed">{{coin.integrity}}</span>
+              </span>
+          </div>      </a>
+          
+            
+           
+               {% empty %}
+            
+          {% endfor %}
+       
+      
+        
+      </div>   
+      
+      <!-- B U Y--D I V -->
+      <div id="buy" class="buy">
+      <div id="closeBtn">&#10539;</div>
+      <div class="wrapper2">
+       <img id="qrCode" src="User.jpg" alt="Your QR Code will be show here..." class="code"/>
+        <input type="text" id="output-addr" readonly />
+        <div class="btn-container">
+          <button id="generate-btn">Generate</button>
+          <button id="copy-btn">Copy</button>
+      </div>
+      </div>
+          
+      </div>
+      
+      <!-- F O O T E R-->
+      <footer>
+          <button onclick="populate(this.id)"><img src="../images/applebook.svg"/><span>Courses</span></button>
+          <button onclick="alert(this.id)"><svg width="25px" height="25px" viewBox="0 0 28 28" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="🔍-Product-Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="ic_fluent_library_28_regular" fill="#888888" fill-rule="nonzero">
+            <path d="M3.9997,3 L5.9897,3 C7.04351818,3 7.9078157,3.81639669 7.98421089,4.85080841 L7.9897,5 L7.9897,23 C7.9897,24.0538182 7.17330331,24.9181157 6.13889159,24.9945109 L5.9897,25 L3.9997,25 C2.94588182,25 2.0815843,24.1836033 2.00518911,23.1491916 L1.9997,23 L1.9997,5 C1.9997,3.94618182 2.81609669,3.0818843 3.85050841,3.00548911 L3.9997,3 L5.9897,3 L3.9997,3 Z M10.9947,3 L12.9897,3 C14.0435182,3 14.9078157,3.81639669 14.9842109,4.85080841 L14.9897,5 L14.9897,23 C14.9897,24.0538182 14.1733033,24.9181157 13.1388916,24.9945109 L12.9897,25 L10.9947,25 C9.93992727,25 9.07649752,24.1836033 9.00018319,23.1491916 L8.9947,23 L8.9947,5 C8.9947,3.94618182 9.81018554,3.0818843 10.8453842,3.00548911 L10.9947,3 L12.9897,3 L10.9947,3 Z M20.1303,5.0264 C20.9735941,5.0264 21.7460232,5.56408858 22.0232306,6.38601897 L22.0693,6.5434 L25.9293,22.0264 C26.1851182,23.0487182 25.6026719,24.0847037 24.6168316,24.4098625 L24.4733,24.4514 L22.5103,24.9404 C22.3483,24.9804 22.1853,25.0004 22.0253,25.0004 C21.1810647,25.0004 20.4094661,24.4618256 20.1323596,23.6406247 L20.0863,23.4834 L16.2253,8.0004 C15.9704364,6.97617273 16.552926,5.94101157 17.5387684,5.61680139 L17.6823,5.5754 L19.6453,5.0864 C19.8073,5.0464 19.9703,5.0264 20.1303,5.0264 Z M5.9897,4.5 L3.9997,4.5 C3.75525556,4.5 3.55031728,4.67777778 3.50779328,4.91042524 L3.4997,5 L3.4997,23 C3.4997,23.2444444 3.67747778,23.4493827 3.91012524,23.4919067 L3.9997,23.5 L5.9897,23.5 C6.23503333,23.5 6.43928025,23.3222222 6.48163964,23.0895748 L6.4897,23 L6.4897,5 C6.4897,4.75555556 6.31271235,4.55061728 6.07953813,4.50809328 L5.9897,4.5 Z M12.9897,4.5 L10.9947,4.5 C10.7493667,4.5 10.5451198,4.67777778 10.5027604,4.91042524 L10.4947,5 L10.4947,23 C10.4947,23.2444444 10.6716877,23.4493827 10.9048619,23.4919067 L10.9947,23.5 L12.9897,23.5 C13.2350333,23.5 13.4392802,23.3222222 13.4816396,23.0895748 L13.4897,23 L13.4897,5 C13.4897,4.75555556 13.3127123,4.55061728 13.0795381,4.50809328 L12.9897,4.5 Z M20.1303,6.5264 L20.0688,6.53015 L20.0688,6.53015 L20.0073,6.5414 L18.0453,7.0304 C17.8070778,7.08995556 17.6518185,7.31148642 17.6673137,7.54750288 L17.6813,7.6364 L21.5413,23.1204 C21.6063,23.3804 21.8383,23.5004 22.0253,23.5004 L22.086675,23.496525 L22.086675,23.496525 L22.1473,23.4844 L24.1103,22.9954 C24.3485222,22.9358444 24.5037815,22.7151037 24.4882863,22.4785605 L24.4743,22.3894 L20.6133,6.9054 C20.5483,6.6444 20.3173,6.5264 20.1303,6.5264 Z" id="🎨-Color"></path></g></g></svg><span>Library</span></button>
+          <button onclick="populate(this.id)"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="#888888" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M16.2 7.8l-2 6.3-6.4 2.1 2-6.3z"/></svg><span>Feed</span></button>
+          <button onclick="populate(this.id)"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="#888888" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg><span>Chat</span></button>
+          
+          <button onclick="populate(this.id)"><svg width="25" height="25" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 2L15.6 5.6C18 -0.7 24.7 6 18.4 8.4L22 12L18.4 15.6C16 9.3 9.3 16 15.6 18.4L12 22L8.4 18.4C6 24.7 -0.7 18 5.6 15.6L2 12L5.6 8.4C8 14.7 14.7 8 8.4 5.6L12 2Z" stroke="#888888" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg><span>Quiz</span></button>
+      </footer>
+
+            <!-- ADD WALLET BOX-->
+            <!-- to be xonverted to subscribe w/ email/phone number-->
+            
+            <div class="filter">
+            <div id="addBox">
+        <div class="wrapper2">
+         
+        
+        <form>
+           <h3>Choose an upload source</h3>
+  <input type="radio" id="option1" name="Location" value="Local Docs">
+  <label for="option1">Local Docs</label><br>
+
+  <input type="radio" id="option2" name="Location" value="Google Drive">
+  <label for="option2">Google Drive</label><br>
+
+  
+        </form>
+        
+        
+        <button id="continue" style="width:100%; margin-top:1.4em; padding:10px; background-color: #FE4F30; border-radius:5px; color:white;" onclick="addWallet()">Continue</button>
+        </div>
+            </div>
+            </div>
+            
+        
+            
+
+    
+    <!-- Script -->
+    <script>
+    
+    
+    //populate the app with cryptocoins with api
+      function $(query) {
+
+    return document.querySelector(query)
+
+}
+
+function $$(query) {
+
+    return document.querySelectorAll(query)
+
+}
+
+document.body.onclick = function() {
+  if(!document.fullscreenElement){ 
+  document.body.webkitRequestFullScreen(); }
+  }
+
+
+async function getData() {
+    // fetching data
+
+    const res = await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false')
+
+    const data = await res.json()
+
+    
+
+
+
+    //updateUI(data) /*call to call coins api*/
+
+}
+
+/*
+
+function updateUI(data) {
+
+    // updating UI
+
+    const container = $('.bottom')
+    //The tab exist first in the bottom div
+    
+
+    let html = '<div class="tab"><h4 style="font-size: 83.7%; font-weight : 700;">Recent Transactions</h4><span id="airBtn" style="color : grey;" onclick="populate(this.id)">...</span></div>'
+
+
+
+    data.forEach((item, index) => {
+        let coinPossessed = (Math.random() * 14).toFixed(8);
+        
+        //instantiate priceChangeand sign its value.
+        
+        let priceChange = new Intl.NumberFormat("en-US", {
+    signDisplay: "exceptZero"
+}).format(item.price_change_percentage_24h.toFixed
+(2)); 
+
+       
+        
+        let divChange = "";
+
+        const div = `
+
+            <div class='box' id='${index == 0 && 'wheat'}' >
+            <span class="down1">
+            <img src='${item.image}' class='coins' alt='${item.name}' /></span>
+            
+            
+                          
+              <span class="down2">
+                  <h4 id="coinName">${item.name}</h4>
+                  <span id="currPrice">$${(item.current_price).toFixed(2)} <span id="priceChange" onclick ="this.id = 'priceChangeRed';"                    >${priceChange}%</span></span>
+              </span>
+              <span class="down3">
+                  <h4 id="coinValue">$${(item.current_price * coinPossessed).toFixed(2)}</h4>
+                  <span id="coinPossessed">${coinPossessed}</span>
+              </span>
+          </div>       
+
+                
+
+        `
+        
+      //change price_change_percentage_24h font color to red if less than 1
+      
+        
+      if (Math.sign(priceChange)== -1){
+           divChange = div.replace('id="priceChange"', 'id="priceChangeRed"') ;
+           
+           
+            
+        }
+        else{
+            divChange += div;
+        }
+      
+      
+
+        html += divChange;
+
+    })
+  
+            
+
+    container.innerHTML = html + '<div id="add" class="dashed-box">+ Add Wallet</div></div>'  ;
+    
+
+}
+
+*/
+
+
+
+window.onload = getData()
+
+      let generateBtn = document.getElementById("generate-btn");
+      let buyBtn = document.getElementById("buyBtn");
+      let addBtn = document.getElementById("add");
+      let uploadBox = document.getElementById("uploadBox");
+      let addBox = document.getElementById("addBox");
+      let buyBox = document.getElementById("buy"); 
+      let outputAddr = document.getElementById("output-addr");
+      let box1 = document.getElementById("box1");
+      let box2 = document.getElementById("box2");
+      let box3 = document.getElementById("box3");
+      let qrCode = document.getElementById("qrCode");
+      let closeBtn = document.getElementById("closeBtn");
+      let copyBtn = document.getElementById("copy-btn");
+      let code = document.querySelector('.code'); 
+      let toast = document.querySelector('#qrCode');
+      let walletString = "0123456789abcdef";
+      
+      
+
+      let randomColor = () => {
+        let walletAddr  = "0x";
+        for (i = 0; i < 40; i++) {
+          walletAddr += walletString[Math.floor(Math.random() * walletString.length)];
+        }
+        return walletAddr;
+      }; 
+
+      let generateGrad = () => {
+        let address = randomColor();
+        outputAddr.value = `${address}` ; 
+        var data = address ;
+        var url = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${data}`;
+        code.src = url;
+        
+      };
+
+        let addWallet = () =>{
+            addBox.style.display="none"
+            uploadBox.style.display="block"
+            
+        };
+        
+      
+
+        let uploadDocs = (id) =>{
+          document.getElementById(id).style.display="none"
+          document.getElementById("progress").style.display="block"
+        };
+
+    
+      addBtn.addEventListener("click", () => { 
+        addBox.style.display ="block";
+      });
+      
+      copyBtn.addEventListener("click", () => {
+        outputAddr.select();
+        document.execCommand("copy");
+        alert( "Code Copied To Clipboard" + ` ${outputAddr.value}`);
+      });
+
+      
+      closeBtn.addEventListener("click", () => {
+        buyBox.style.display ="none";
+      });
+
+      generateBtn.addEventListener("click", generateGrad);
+      window.onload = generateGrad;
+      const splash = document.querySelector(".splash");
+
+document.addEventListener("DOMContentLoaded" , (e)=>{
+    setTimeout(()=>{
+        splash.classList.add("display-none");
+} , 8000);
+});
+
+
+
+
+</script>
+  </body>
+</html>

@@ -1,0 +1,218 @@
+ {% extends 'core/base.html' %}
+
+{% load static %}
+
+{% block title %} Scope | Home {% endblock %}
+
+{% block content %}   
+ 
+ <div class="tab">
+              <h5 style="font-weight : 800;">Airdrops</h5>
+             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" id="filter"><path d="M4 10h7.09a6 6 0 0 0 11.82 0H44a1 1 0 0 0 0-2H22.91A6 6 0 0 0 11.09 8H4a1 1 0 0 0 0 2zM17 5a4 4 0 1 1-4 4A4 4 0 0 1 17 5zM44 23H36.91a6 6 0 0 0-11.82 0H4a1 1 0 0 0 0 2H25.09a6 6 0 0 0 11.82 0H44a1 1 0 0 0 0-2zM31 28a4 4 0 1 1 4-4A4 4 0 0 1 31 28zM44 38H22.91a6 6 0 0 0-11.82 0H4a1 1 0 0 0 0 2h7.09a6 6 0 0 0 11.82 0H44a1 1 0 0 0 0-2zM17 43a4 4 0 1 1 4-4A4 4 0 0 1 17 43z"></path></svg>
+           </div>
+           
+           
+  <!--FILTER MODAL-->
+  
+    
+    <div id="filterModal" class="modal-overlay">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 class="modal-title">Filters</h2>
+                <button class="close-button">&times;</button>
+            </div>
+            <div class="filter-section">
+                <div class="filter-title" onclick="toggleFilter(this)">
+                    Likelihood
+                    <svg class="arrow-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7 10l5 5 5-5z"/>
+                    </svg>
+                </div>
+                <div class="filter-options">
+                    <div class="filter-option">
+                        <input type="checkbox" id="likelihoodHigh" name="likelihood" value="High">
+                        <label for="likelihoodHigh">High</label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="checkbox" id="likelihoodMedium" name="likelihood" value="Medium">
+                        <label for="likelihoodMedium">Medium</label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="checkbox" id="likelihoodLow" name="likelihood" value="Low">
+                        <label for="likelihoodLow">Low</label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="checkbox" id="likelihoodConfirmed" name="likelihood" value="Confirmed">
+                        <label for="likelihoodConfirmed">Confirmed</label>
+                    </div>
+                </div>
+            </div>
+            <div class="filter-section">
+                <div class="filter-title" onclick="toggleFilter(this)">
+                    Difficulty
+                    <svg class="arrow-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7 10l5 5 5-5z"/>
+                    </svg>
+                </div>
+                <div class="filter-options">
+                    <div class="filter-option">
+                        <input type="checkbox" id="difficultyHigh" name="difficulty" value="High">
+                        <label for="difficultyHigh">High</label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="checkbox" id="difficultyMedium" name="difficulty" value="Medium">
+                        <label for="difficultyMedium">Medium</label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="checkbox" id="difficultyLow" name="difficulty" value="Low">
+                        <label for="difficultyLow">Low</label>
+                    </div>
+                </div>
+            </div>
+            <div class="filter-section">
+                <div class="filter-title" onclick="toggleFilter(this)">
+                    Status
+                    <svg class="arrow-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7 10l5 5 5-5z"/>
+                    </svg>
+                </div>
+                <div class="filter-options">
+                    <div class="filter-option">
+                        <input type="radio" id="statusAll" name="status" value="All" checked>
+                        <label for="statusAll">All</label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="radio" id="statusInProgress" name="status" value="In progress">
+                        <label for="statusInProgress">In progress</label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="radio" id="statusCompleted" name="status" value="Completed">
+                        <label for="statusCompleted">Completed</label>
+                    </div>
+                </div>
+            </div>
+            <div class="filter-section">
+                <div class="filter-title" onclick="toggleFilter(this)">
+                    KYC?
+                    <svg class="arrow-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7 10l5 5 5-5z"/>
+                    </svg>
+                </div>
+                <div class="filter-options">
+                    <div class="filter-option">
+                        <input type="radio" id="kycYes" name="kyc" value="Yes" checked>
+                        <label for="kycYes">Yes</label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="radio" id="kycNo" name="kyc" value="No">
+                        <label for="kycNo">No</label>
+                    </div>
+                </div>
+            </div>
+            <div class="filter-section">
+                <div class="filter-title" onclick="toggleFilter(this)">
+                    Blockchain
+                    <svg class="arrow-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7 10l5 5 5-5z"/>
+                    </svg>
+                </div>
+                <div class="filter-options">
+                    <select id="blockchain" name="blockchain">
+                        <option value="">Select Blockchain</option>
+                        <option value="ethereum">Ethereum</option>
+                        <option value="bitcoin">Bitcoin</option>
+                        <option value="solana">Solana</option>
+                        <option value="cardano">Cardano</option>
+                    </select>
+                </div>
+            </div>
+            <div class="filter-section">
+                <div class="filter-title">
+                    Sort by
+                </div>
+                <div class="filter-options" style="display: block;">
+                    <select id="sortBy" name="sortBy">
+                        <option value="relevance">Relevance</option>
+                        <option value="dateAsc">Date (Ascending)</option>
+                        <option value="dateDesc">Date (Descending)</option>
+                        <option value="nameAsc">Name (A-Z)</option>
+                        <option value="nameDesc">Name (Z-A)</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="clear-button">Clear all</button>
+                <button class="apply-button">Apply</button>
+            </div>
+        </div>
+    </div>
+
+
+
+           
+    <!--Account indicator -->
+        <div class="logo-container">
+  <div class="logo">
+    <div class="x-mark"></div>
+  </div>
+</div>
+         
+         {% for airdrop in airdrops %}
+        <a style="outline:none;" href="{% url 'coin:module' slug=airdrop.slug %}" >   
+      <div class='box' id='${index == 0 && 'wheat'}' >
+            <span class="down1">
+            <div class="hexagon"/><image src="{% static 'core/images/profilePic.jpg' %}"/></div></span>
+            
+            
+                          
+              <span class="down2">
+                  <h4 id="airdropName">{{airdrop.name}} {{airdrop.ticker}}</h4>
+                  <span id="startAmount"><span id="startPrice">${{airdrop.startprice}}</span><span id="credibility" >{{airdrop.legibility}}</span></span>
+              </span>
+              <span class="down3">
+                  <h4 id="airdropValue">{{airdrop.difficulty}}</h4>
+    <div class="circular-progress" data-rating="{{airdrop.integrity_score}}">
+        <svg class="circular-progress-svg" width="32" height="32" viewBox="0 0 32 32">
+            <defs>
+                <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" style="stop-color:#ba4cb6" />
+                    <stop offset="33%" style="stop-color:#1e4ca8" />
+                    <stop offset="66%" style="stop-color:#e0addd" />
+                    <stop offset="100%" style="stop-color:#6a4cad" />
+                </linearGradient>
+            </defs>
+            <circle class="circular-progress-track" cx="16" cy="16" r="14" />
+            <circle class="circular-progress-fill" cx="16" cy="16" r="14" />
+        </svg>
+        <div class="circular-progress-value">{{airdrop.integrity_score}}</div>
+    </div>
+              </span>
+          </div> </a>
+          
+       
+               
+          {% empty %}
+      
+          <img src="{% static 'core/images/Screenshot_20230929-193445_1.png' %}"/>
+          <h3>No Airdrop found</h3>
+    
+          
+        
+          
+      </div>   
+      
+      <!-- B U Y--D I V -->
+      <div id="buy" class="buy">
+      <div id="closeBtn">&#10539;</div>
+      <div class="wrapper2">
+       <img id="qrCode" src="User.jpg" alt="Your QR Code will be show here..." class="code"/>
+        <input type="text" id="output-addr" readonly />
+        <div class="btn-container">
+          <button id="generate-btn">Generate</button>
+          <button id="copy-btn">Copy</button>
+      </div>
+      </div>
+          
+      </div>
+         {% endfor %}
+         {% endblock %}

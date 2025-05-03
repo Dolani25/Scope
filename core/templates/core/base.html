@@ -1,0 +1,1695 @@
+<!-- Created by Dolani -->
+
+{% load static %}
+{% include 'core/nav.html' %}
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui"/>
+    
+    <title>Scope | Home</title>
+    
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <link rel="icon" type="image/x-icon" href="{% static 'core/images/favicon.ico' %}">
+
+<script src="https://kit.fontawesome.com/11114d5bad.js" crossorigin="anonymous"></script>
+
+<script src="https://kit.fontawesome.com/f57ad55ce5.js" crossorigin="anonymous"></script>
+
+
+
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+  
+  <meta name="google-signin-client_id" content="89197634691-sr2bqlohjhthlam01t9ett58pbv8vjfi.apps.googleusercontent.com">
+
+      
+    <style>
+            @import url('https://fonts.cdnfonts.com/css/nexa-bold');
+            
+            @import url('https://fonts.cdnfonts.com/css/ethnocentric');
+                
+
+        html{
+          scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Nexa', sans-serif;
+            overflow-y:auto;
+            overflow-x: hidden; /* Prevent horizontal scrolling */
+        }
+        
+            /* Created by Dolani */
+
+* {
+        padding: 0;
+        margin: 0;
+        -webkit-box-sizing: border-box;
+                box-sizing: border-box;
+        border: none;
+        outline: none;
+        
+      }
+
+body,HTML,*{
+/*disable copy and paste*/
+-webkit-user-select: none;
+ -webkit-touch-callout: none;
+ -moz-user-select: none;
+ -ms-user-select: none; 
+user-select: none;
+text-decoration:none;
+
+}
+
+
+
+      body {
+        height: 100vh;
+        background: #ffffff;
+      }
+      .top{
+          background: #283038;
+          height : 59px;/*9vh;*/
+          padding : 6vmin 5vmin 2vmin 5vmin;
+          display:flex;
+          justify-content:space-between;
+          overflow-x : hidden !important;
+          color : #f1f1f1;
+          position : sticky;
+          top : 0;
+      }
+      
+      .bottom{
+          padding : 4vmin 4.6vmin 22vmin 4.6vmin;
+          text-align: center;
+          
+        
+          background : inherit;
+          height : 90%;
+          overflow-x : hidden !important;
+      }
+      .wrapper {
+        position : absolute;
+        top : 34%;
+        z-index : 95;
+          -webkit-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+                transform: translate(-50%, -50%);
+        left: 50%;
+        width: 92vmin;
+        background-color: #ffffff;
+        padding:  3px;
+        border-radius: 30px;
+        
+        -webkit-box-shadow: 0 10px 25px rgba(60, 60, 100, 0.35);
+                box-shadow: 0 10px 25px rgba(60, 60, 100, 0.35);
+      }
+      
+      footer{
+        background-color:#F6F6F6;/*#283038*/
+        opacity:0.9;
+        -webkit-box-shadow: 0 20px 25px rgba(60, 60, 100, 0.15);
+                box-shadow: 0 20px 25px rgba(60, 60, 100, 0.15);
+                
+        display: flex;
+        border: 1px solid rgba(5,5,5,.15);
+        justify-content : space-around;
+        text-align: center;
+        padding: 3px;
+        border-radius: 55px;
+        position : fixed;
+        bottom : 0.8vh;
+        -webkit-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+                transform: translate(-50%, -50%);
+        left: 50%;
+        width: 55vmin;
+        color: #D0D0D8;
+        text-decoration: none;
+        font-weight: bold;
+      }
+      #qrCode {
+        width: 40vmin;
+        height: 40vmin;
+        border-radius: 5px;
+        
+        padding: 5px; 
+        background: #07f49e; 
+        opacity: 1;
+        visibility: visible; 
+        box-shadow: 0 10px 25px -10px #07f49e; 
+        transition: 0.1s;
+       display : block;
+       margin : auto;
+      }
+      
+      #output-addr {
+        background-color: #f1f5fc;
+        font-size: 4vmin;
+        font-weight: 400;
+        color: #3f415f;
+        width: 100%;
+        padding: 15px 10px;
+        border-radius: 5px;
+        margin: 20px 0 40px 0;
+      }
+      .btn-container {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-pack: distribute;
+            justify-content: space-between;
+      }
+      .btn-container button {
+        background-color: #3EB489;
+        min-width: 40%;
+        padding: 15px 0;
+        color: #282830;
+        border-radius: 30px;
+        font-size: 3vmin;
+        font-weight: 700;
+      }
+
+    #invisible-btn{
+        background : inherit;
+        font-size : 4.2vmin;
+        margin-left : 4vmin;
+    }
+    
+    #buyBtn{
+        font-size : 4.2vmin;
+    }
+    
+    select{
+        width : 14vmin;
+        background : inherit;
+        color : #888888;
+        margin-left : -5px;
+    }
+    
+    footer button {
+        background-color: inherit;
+        width: 50px;
+        height : 50px;
+        padding: 2px; /* formerly 10px*/
+        color: #282830;/*#D6B9FC*/
+        border-radius: 50%;
+        font-size: 3vmin;
+        font-weight: 400;
+      }
+      
+      footer button:not(:first-child){
+          background : inherit;
+          color: #888888;
+      }
+      
+      .box {
+                    position : relative;
+        margin-bottom : 11px;
+        color : #282830;
+        width: 100%;
+        min-height:15vh; /* just added*/
+        background-color: #ffffff;
+        padding: 15px;
+        border-radius: 8px;
+        display : flex;
+        justify-content : space-between;
+        -webkit-box-shadow: 0 10px 25px rgba(60, 60, 100, 0.35);
+                box-shadow: 0 10px 25px rgba(60, 60, 100, 0.35);
+      }
+      
+        .add-box {
+        margin-bottom : 11px;
+        width: 45%;
+        background-color: #FE4F30 ;
+        padding: 14px;
+        text-align : center;
+        color : white;
+        display: block;
+        margin: auto;
+        margin-top:25px;
+        
+        border-radius: 8px;
+        
+        font-size : 14px;
+       font-weight : 400;
+       
+      }
+
+     .tab{
+        display : flex;
+        justify-content : space-between;
+        align-items : center;
+        align-content: center;
+        overflow : hidden;
+        font-size:20px;
+        margin-bottom : 10vmin;
+        padding : 0 1vmin 0 1vmin;
+    }
+    
+    .tab span{
+        
+        width :50%;
+    }
+    
+    .tab h5{
+      font-size: 2.5vh;
+    }
+    
+    .buy , #addBox, #uploadBox{
+        width: 95vmin;
+        position: fixed;
+        -webkit-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+                transform: translate(-50%, -50%);
+        left: 50%;
+        top: 50%;
+        z-index : 50;
+        background  : #ffffff;
+        border-radius : 5px;
+        display : none; 
+      }
+      
+      
+      
+            .wrapper2 {
+        width: 100%;
+        background-color: #ffffff;
+        padding: 50px 30px;
+        border-radius: 8px;
+        -webkit-box-shadow: 0 10px 25px rgba(60, 60, 100, 0.35);
+                box-shadow: 0 10px 25px rgba(60, 60, 100, 0.35);
+      }
+      
+      #closeBtn{
+          position : absolute;
+          height : 60px;
+          width : 60px;
+          top : -28px;
+          right : -28px;
+          background : #ffffff;
+          color : grey;
+          border-radius : 50%;
+          font-size : 50px;
+          text-align : center;
+          box-shadow: 0 10px 25px rgba(60, 60, 100, 0.35);
+      }
+      
+      .splash{
+position : fixed;
+
+top : 0;
+font-family: 'Croissant One'!important
+left : 0;
+width : 100vw !important;  /*100vh */
+height : 100vh !important;
+overflow-y : hidden !important;
+background : #101010; 
+
+
+z-index : 1000;
+color : #fff; /*#283038;*/
+text-align : center;
+font-size : 20px;
+font-weight : 700;
+line-height : 98vh;  /*60vh */
+display : flex;
+display : none; /*remove after editing*/
+align-items : center;
+justify-content : center ;
+
+}
+
+.splash.display-none{
+position : fixed;
+top : 0;
+left : 0;
+opacity : 0;
+width : 100%;
+height : 100vh;
+background : black;
+z-index : -10;
+color : white;
+text-align : center;
+line-height : 90vh;
+transition : all 0.5s;
+}
+
+@keyframes fadeIn{
+    to{
+        opacity : 1;
+}
+}
+
+.fade-in{
+    color : #fff; /*#F0F0F0;*/
+    font-family: 'Croissant One', cursive;
+    font-weight : 500;
+    font-size : 2.3em;
+    letter-spacing : -5px;
+    opacity : 0;
+    animation : fadeIn 1s ease-in forwards;
+}
+
+.code {
+     margin-top : 10px; 
+     height : 100%;
+     width : 100%;
+     }
+
+
+.airdrops{
+    height : 8vh;
+    width : 8vh;
+    border-radius : 50%;   
+}
+
+
+button img{
+    height : 25px;
+    width : 25px
+    color : grey;
+}
+
+#appName h3{
+    
+    font-size : 3.5vh;
+    font-weight : 300;
+    letter-spacing : -3px;
+    
+    font-family: 'Ethnocentric Rg' , sans-serif;
+    background: -webkit-linear-gradient(#42BB0C, #40B808);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+#appName h3 img{
+  height:4vh;
+  width:4vh;
+}
+
+
+
+#appName{
+    flex :1.88;
+    display: flex;
+        align-items: center;
+        
+}
+
+
+#appName img{
+    height : 3.5vh;
+    width : 3.5vh;
+    float: left;
+    margin-right:2vw;
+    
+}
+
+
+.fas{
+    color: grey;
+    font-size : 24px;
+}
+
+.fa-bars , .hamburger{
+    flex : 1;
+}
+
+
+
+#flexed{
+    display : flex;
+    width:100%;
+    align-items : center;
+    align-content : space-between;
+    justify-content : start;
+    margin-top:1vh;
+    margin-bottom : 3.5vh;
+}
+
+#select2{
+    width :100%;
+    font-size : 110%;
+    font-weight : 600;
+}
+
+.box > div{ display:flex; justify-content:center; } 
+
+.down1{ flex-basis:14.66%; }
+
+
+ 
+.down2{ flex-basis:55.33%;
+        margin-top : .8vh;
+        text-align:left;
+        padding-left:10px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+}
+
+.down3{ flex-basis:30%;
+        margin-top : .8vh;
+        text-align:right;
+}
+
+#startAmount , #airdropPossessed{
+    font-size:92%;
+    font-weight:300;
+    color:grey;
+    text-align:center;
+}
+
+#startAmount{
+  padding-top:10px;
+  padding-bottom:10px;
+}
+
+#credibility{
+    font-family: San-serif;
+    margin-left:15px;
+    font-size : 70%;
+    font-weight:900;
+    color : #283038;
+    background:#99edc3;
+    padding:3px;
+    border-radius:3px;
+}
+
+#credibilityRed{
+    font-size : 85%;
+    color : red;
+}
+
+.balance-wrapper{
+    display:flex;
+    flex-direction : column;
+    align-items : center;
+    justify-content: center;
+}
+
+.bottom h3{
+  line-height: 2.5em;
+}
+
+.bottom p3{
+  color : #CFCFCF;
+  font-size:15px;
+}
+
+#addBox .wrapper2 form{
+  line-height: 2em;
+  color:black ;/*#283038;*/
+}
+
+#addBox .wrapper2 form h3{
+  margin-bottom:0.8em;
+  font-weight: 400;
+}
+
+#addBox .wrapper2 form label{
+  display:absolute;
+  font-weight: 700;
+  margin :6px !important;
+  
+}
+
+#progress{
+  display: none;
+  margin-top:1.4em;
+}
+
+#progressOut{
+margin: 5px 0 5px 0;
+height:6px;
+width: 100%;
+margin-bottom:4vw;
+background:#3870D8;
+border-radius: 7px;
+
+box-shadow: inset 5px 5px 10px #2b56a6, 
+            inset -5px -5px 10px #458aff;
+}
+
+#progressIn{
+background: #F89038;
+height:6px;
+width:35%;
+border-radius:4px;
+
+
+background: linear-gradient(145deg, #ff9a3c, #df8232);
+box-shadow:  2x 2px 0px #f68f37, 
+             -2px -2px 0px #fa9139;
+}
+
+
+/*Nav styling*/
+nav{
+padding:16px;
+display: none ;
+width:85% !important;
+height:100vh !important;
+color : #101010;
+border-radius: 0px;
+background: #fff;
+z-index:100 !important;
+}
+
+/*Nav animations*/
+nav {
+  -webkit-animation: slideRight 1s;
+  animation: slideRight 1s
+}
+
+@-webkit-keyframes slideRight {
+  from {-webkit-transform: translateX(-50vw);
+             opacity:0;
+} 
+  to {-webkit-transform: translateX(0px)
+        opacity:1;
+}
+}
+  
+@keyframes slideRight {
+  from {transform: translateX(-50vw);
+             opacity:0;
+} 
+  to {transform: translateX(0px);
+        opacity:1;
+}
+}
+
+
+
+#profilePic{
+height:47px;
+width:47px;
+margin-top : -1.5vw;
+margin-bottom:1.8vw;
+border-radius:50%;
+border:1px solid grey;
+
+background: #F6F6F6;
+}
+
+
+#progressOut{
+margin: 5px 0 5px 0;
+height:6px;
+width: 100%;
+margin-bottom:4vw;
+background:#3870D8;
+border-radius: 7px;
+
+box-shadow: inset 5px 5px 10px #2b56a6, 
+            inset -5px -5px 10px #458aff;
+}
+
+#progressIn{
+background: #F89038;
+height:6px;
+width:35%;
+border-radius:4px;
+
+
+background: linear-gradient(145deg, #ff9a3c, #df8232);
+box-shadow:  2x 2px 0px #f68f37, 
+             -2px -2px 0px #fa9139;
+}
+
+#Username{
+font-size:107%;
+color: #101010;
+}
+
+
+ul{
+padding:0;
+margin:0;
+list-style-type:none;
+font-weight:bold;
+color:#101010;
+margin:0;
+padding:0;
+font-family: San-serif;
+list-style:none;
+text-decoration: none;
+overflow: hidden;
+}
+
+.fa{
+font-size:26px;
+}
+.fas ,.far{
+color:#6090E0;
+}
+
+
+
+.item{
+overflow: hidden;
+}
+
+.btn{
+display: block;
+padding:16px ; /*formerly 16px 18px*/
+padding-left : 16px;/*10 px before controls padding*/
+background: inherit;
+font-size : 95%;
+font-weight : 400;
+position: relative;
+color:rgba(16,16,16,0.95)!important;
+}
+
+.btn:before{
+content:"";
+position: absolute;
+width:14px;
+height:14px;
+background: inherit;
+left:20px;
+bottom:-7px;
+transform: rotate(45deg);
+}
+
+.btn svg{
+margin-right:26px !important;
+}
+
+.smenu{
+background:#333;
+overflow: hidden;
+transition:max-height 0.3s;
+max-height:0;
+font-size : 95%;
+font-weight : 400;
+color:rgba(16,16,16,0.95)!important
+}
+
+
+
+.colon{
+   margin-top:5px;
+   }
+   
+   .fas{
+      font-size : 19px;
+      margin-right : 4.2px;
+      }
+      
+.filter{
+    background : rgba(0,0,0,0.5);
+    position : fixed;
+    top:0;
+    left:0;
+    z-index : 99;
+    width : 100vw;
+    }
+
+    
+.navtop{
+display: flex;
+justify-content: space-between;
+margin-bottom:10px;
+color:#101010;
+}
+
+.rank_points{
+  display: flex;
+justify-content: space-around;
+margin-bottom:10px;
+color:#101010;
+}
+
+.rank_points h5{
+  height : 40px;
+  width: 40px;
+  background: #D6B9FC;
+  padding : 8px;
+  border-radius:50%;
+}
+
+.wrapper3{
+  width:100%;
+  padding: 30px;
+        background-color: #ffffff;
+        padding: 50px 30px;
+        border-radius: 8px;
+        -webkit-box-shadow: 0 10px 25px rgba(60, 60, 100, 0.35);
+                box-shadow: 0 10px 25px rgba(60, 60, 100, 0.35);
+}
+
+.wrapper3 h3{
+  text-align: center;
+  font-weight: 400;
+}
+
+.wrapper3 form{
+  height: 167px;
+  margin: 30px 0 ;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border-radius:5px;
+  border:2px dashed #FE4F30 ;
+}
+
+.wrapper3 form :where(i,p){
+  color :#FE4F30;
+}
+
+.wrapper3 form p{
+  font-size: 16px;
+  margin-top:15px;
+}
+
+section .row{
+  background:#FEA898;
+  list-style: none;
+  padding:15px 20px;
+  display: flex;
+  border-radius: 5px;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10;
+}
+
+
+section .row i{
+  font-size: 30;
+  color:#FE4F30;
+}
+
+.progress-area .row .content{
+  width:100%;
+  margin-left:15px;
+}
+
+.progress-area .progress-bar{
+  height: 6px;
+  width:100%;
+}
+
+.progress-area .details{
+  display: flex;
+  margin-bottom: 7px;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.uploaded-area .row .content{
+  display:flex;
+  margin-left:15px; /* ithink it should be removed*/
+  align-items:center;
+}
+
+.uploaded-area .fa-check{
+  font-size:16px;
+  color:#FE4F30;
+}
+
+
+section .row .content{
+  width:100%;
+  margin-left:15px;
+}
+section .details span{
+  font-size: 14px;
+}
+
+
+
+
+
+
+
+.progress-area .content .progress-bar{
+  height: 6px;
+  width: 100%;
+  margin-bottom: 4px;
+  background: #fff;
+  border-radius: 30px;
+}
+.content .progress-bar .progress{
+  height: 100%;
+  width: 0%;
+  background: #6990F2;
+  border-radius: inherit;
+}
+.uploaded-area{
+  max-height: 232px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  
+}
+.uploaded-area.onprogress{
+  max-height: 150px;
+}
+.uploaded-area::-webkit-scrollbar{
+  width: 0px;
+}
+.uploaded-area .row .content{
+  display: flex;
+  align-items: center;
+}
+.uploaded-area .row .details{
+  display: flex;
+  margin-left: 15px;
+  flex-direction: column;
+}
+.uploaded-area .row .details .size{
+  color: #404040;
+  font-size: 11px;
+}
+.uploaded-area i.fa-check{
+  font-size: 16px;
+}
+
+
+::selection{
+  color: #fff;
+  background: #6990F2;
+}
+.wrapper3{
+  box-shadow: 7px 7px 12px rgba(0,0,0,0.05);
+}
+
+
+#formUpload :where(i, p){
+  color: #6990F2;
+}
+#formUpload i{
+  font-size: 50px;
+}
+#formUpload p{
+  margin-top: 15px;
+  font-size: 16px;
+}
+
+.item .btn svg{
+  margin-bottom:-6px !important;
+  margin-right : 12px;
+}
+
+#userVerified{
+  margin-top:-.9vw;
+}
+
+.notification-icon {
+            position: relative;
+            display: inline-block;
+        }
+
+        .bell-icon {
+            fill: #283038;
+            stroke: #fff;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .notification-count {
+            position: absolute;
+            top: -1.6vh;
+            right: -0.9vh;
+            z-index:-39393388383;
+            background-color: #4c4cff;
+            color: white;
+            border-radius: 50%;
+            width: 3vh;
+            height: 3vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2vh;
+            font-family: San-serif;
+            font-weight: 900;
+        }
+
+        .notification-count:empty {
+            display: none;
+        }
+
+.box .hexagon {
+  width: 8.5vh;
+  height: 9.3vh;
+  overflow: hidden;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  border-radius: 20px;
+
+}
+
+.hexagon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+.logo-container {
+  background-color: #2a2a3a;
+  width: 13.5vh; /* Increased to accommodate padding */
+  height: 10vh; /* Increased to accommodate padding */
+  display: flex;
+  position: fixed;
+  left: -10px;
+  bottom: 74vh;
+  z-index:400;
+  align-items: center;
+  border-top-right-radius: 5.1vh;
+  border-bottom-right-radius: 5.1vh;
+  padding: 1.5vh;
+  box-sizing: border-box;
+}
+
+.logo {
+  width: 7.6vh;
+  height: 7.6vh;
+  background-color: #4c4cff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto; /* Pushes the logo to the right */
+  margin-right: 0px; /* Creates 10px space on the right */
+}
+
+.x-mark {
+  width: 18px;
+  height: 18px;
+  position: relative;
+}
+
+.x-mark::before,
+.x-mark::after {
+  content: '';
+  position: absolute;
+  background-color: white;
+  width: 2px;
+  height: 18px;
+  top: 0;
+  left: 8px;
+}
+
+.x-mark::before {
+  transform: rotate(45deg);
+}
+
+.x-mark::after {
+  transform: rotate(-45deg);
+}
+
+.circular-progress {
+            position: relative;
+            width: 32px;
+            height: 32px;
+            display: inline-block;
+        }
+
+        .circular-progress-svg {
+            transform: rotate(-90deg);
+        }
+
+        .circular-progress-track,
+        .circular-progress-fill {
+            fill: none;
+            stroke-width: 2;
+        }
+
+        .circular-progress-track {
+            stroke: #e0e0e0;
+        }
+
+        .circular-progress-fill {
+            stroke: url(#gradient);
+            stroke-linecap: round;
+            stroke-dasharray: 87.96459430051421; /* Circumference of circle (2 * π * r) */
+            stroke-dashoffset: calc(87.96459430051421 - (87.96459430051421 * var(--progress)) / 100);
+            transition: stroke-dashoffset 0.3s ease;
+        }
+
+        .circular-progress-value {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 10px;
+            font-family: San-serif;
+            font-weight: 900 !important;
+            color: #333;
+        }
+        
+      .top svg {
+        height:3.8vh;
+        width:3.8vh;
+      }
+        .tab svg{
+          height : 4vh !important;
+          width : 4vh !important;
+        }
+        
+        #airdropName{
+          margin-bottom:2.7vh;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+        }
+        
+        #airdropValue{
+          margin-bottom:1.3vh;
+        }
+        
+        #startPrice{
+        
+        }
+        
+        
+        .searchNotif{
+            display :flex;
+           /* width:20vw;*/
+            max-width:70vw;
+            justify-content:space-between;
+            align-items:center;
+        }
+        
+        a{
+outline:none;
+text-decoration:none;
+}
+
+   
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index:500;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal {
+            background-color: white;
+            border-radius: 6px;
+            padding: 20px;
+            width: 300px;
+            max-width: 90%;
+        }
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .modal-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin: 0;
+        }
+        .close-button {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        .filter-section {
+            padding-left:1.7vh;
+            margin-bottom: 20px;
+        }
+        .filter-title {
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+        .filter-options {
+            display: none;
+        }
+        .filter-option {
+            margin-bottom: 10px;
+            padding-left:8px;
+            text-align:left;
+        }
+        .filter-option label {
+            margin-left: 5px;
+        }
+        .modal-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .clear-button {
+            background: none;
+            border: none;
+            color: #007bff;
+            cursor: pointer;
+        }
+        .apply-button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .apply-button:hover {
+            background-color: #0056b3;
+        }
+        .arrow-icon {
+            width: 12px;
+            height: 12px;
+            transition: transform 0.3s ease;
+        }
+        .filter-title.open .arrow-icon {
+            transform: rotate(180deg);
+        }
+        select {
+            width: 100%;
+            padding: 5px;
+            margin-top: 5px; 
+        }
+
+
+/* Search bar transitions */
+    .search-container {
+            position: relative;
+            width: 40px;
+            height: 40px;
+            transition: width 0.3s ease;
+        }
+        .search-container.active {
+            width: 70vw;
+           max-width: 600px;
+        }
+        .search-icon {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            cursor: pointer;
+            z-index: 2; 
+        }
+        .search-bar {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #3a3a3c;
+            border: none;
+            border-radius: 6px;
+            padding: 0 40px;
+            font-size: 16px;
+            color: white;
+            display: none;
+        }
+        .search-container.active .search-bar {
+            display: block;
+        }
+        .cancel-icon {
+            position: absolute;
+            top: 50%;
+            left: 10px;
+            transform: translateY(-50%);
+            cursor: pointer;
+            display: none;
+            color: #8e8e93;
+            font-size: 20px;
+            z-index: 3;
+        }
+        
+                .notification-icon {
+            position: relative;
+        }
+        
+        a{
+        outline:none !important;
+        }
+        
+           /* Responsive styles */
+        @media (min-width: 768px) {
+            .top {
+                height:9vh;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .top {
+                height:9vh;
+            }
+        }
+
+        @media (min-width: 1280px) {
+            .top {
+                height:9vh;
+            }
+        }     
+        
+        
+        
+</style>
+  </head>
+  <body>
+  
+<!--  S P L A S H S C R E E N-->
+
+<div class="splash">
+<h1 class="fade-in"> Swift</h1>
+</div>
+    <div class="top">
+    <div id="flexed">
+    
+    <!--<i class="fas fa-bars"></i> -->
+    <!--hamburger icon svg-->
+    <div class="hamburger" id="openNavBtn"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></div>
+    
+    
+    <span id="appName" >
+        
+        <h3><img src="{% static 'core/images/scope_10767676.png' %}"/><span> Scope</span></h3>
+    </span>
+    
+    
+    <span class="searchNotif">
+      
+              <div class="search-container" id="searchContainer">
+            <span class="cancel-icon" id="cancelIcon">×</span>
+            <input type="text" class="search-bar" id="searchBar" placeholder="Search">
+          
+  <!-- Search icon svg -->
+    <svg class="search-icon"  width="64px" height="64px" viewBox="0 0 24.00 24.00" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M16.6725 16.6412L21 21M19 11C19 15.4183 15.4183 19 11 19C6.58172 19 3 15.4183 3 11C3 6.58172 6.58172 3 11 3C15.4183 3 19 6.58172 19 11Z" stroke="#fff" stroke-width="1.9440000000000002" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+        </div>
+    
+
+    
+    <!-- Notification icon svg-->
+    <div class="notification-icon">
+    <svg class="bell-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#283038" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 17H2a3 3 0 0 0 3-3V9a7 7 0 0 1 14 0v5a3 3 0 0 0 3 3zm-8.27 4a2 2 0 0 1-3.46 0"></path></svg>
+        <div class="notification-count">5</div>
+    </div>
+    
+    </span>
+        
+    </div>
+    
+
+    
+      </div>
+      
+      
+      
+      <div class="bottom">
+         {% block content %}
+         {% endblock %}
+      
+      <!-- F O O T E R-->
+      <footer>
+          <button><a href="{% url 'index' %}"><img src="{% static 'core/images/airdrop_8290002-1.png' %}"/></a></button>
+ <button onclick="populate(this.id)"><img src="{% static 'core/images/coin_10693221.png' %}"/></button>
+          
+          <button><a href="{% url 'event-calendar' %}"><img src="{% static 'core/images/calendar_8289610.png' %}"/></a></button>
+      </footer>
+
+            <!-- ADD WALLET BOX-->
+            <!-- to be xonverted to subscribe w/ email/phone number-->
+            
+            <div class="filter">
+            <div id="addBox">
+        <div class="wrapper2">
+         
+        
+        <form>
+           <h3>Choose an upload source</h3>
+  <input type="radio" id="option1" name="Location" value="Local Docs">
+  <label for="option1">Local Docs</label><br>
+
+  <input type="radio" id="option2" name="Location" value="Google Drive">
+  <label for="option2">Google Drive</label><br>
+
+  
+        </form>
+        
+        
+        <button id="continue" style="width:100%; margin-top:1.4em; padding:10px; background-color: #FE4F30; border-radius:5px; color:white;" onclick="addWallet()">Continue</button>
+        </div>
+            </div>
+            </div>
+            
+        
+            
+
+    
+    <!-- Script -->
+    <script >
+    
+    
+    //populate the app with cryptoairdrops with api
+      function $(query) {
+
+    return document.querySelector(query)
+
+}
+
+function $$(query) {
+
+    return document.querySelectorAll(query)
+
+}
+
+//SEARCH BAR transition
+const searchContainer = document.getElementById('searchContainer');
+        const searchIcon = document.querySelector('.search-icon');
+        const searchBar = document.getElementById('searchBar');
+        const cancelIcon = document.getElementById('cancelIcon');
+        const logo = document.getElementById('appName');
+        const notificationIcon = document.querySelector('.notification-icon');
+
+        searchIcon.addEventListener('click', () => {
+            searchContainer.classList.add('active');
+            logo.style.display = 'none';
+            notificationIcon.style.display = 'none';
+            searchBar.focus();
+        });
+
+        searchBar.addEventListener('input', () => {
+            cancelIcon.style.display = searchBar.value ? 'block' : 'none';
+        });
+
+        cancelIcon.addEventListener('click', () => {
+            searchBar.value = '';
+            cancelIcon.style.display = 'none';
+            searchBar.focus();
+        });
+
+        // Close search bar when clicking outside
+        document.addEventListener('click', (event) => {
+            if (!searchContainer.contains(event.target) && searchContainer.classList.contains('active')) {
+                searchContainer.classList.remove('active');
+                logo.style.display = 'flex';
+                notificationIcon.style.display = 'block';
+                searchBar.value = '';
+                cancelIcon.style.display = 'none';
+            }
+        });
+
+//FILTER MODAL LOGIC
+    
+        const filter = document.getElementById('filter');
+        const modal = document.getElementById('filterModal');
+        const closeButton = document.querySelector('.close-button');
+        const clearButton = document.querySelector('.clear-button');
+        const applyButton = document.querySelector('.apply-button');
+
+        filter.addEventListener('click', () => {
+            modal.style.display = 'flex';
+        });
+
+        closeButton.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+        
+        document.querySelector('#openNavBtn').addEventListener('click', () => {
+            document.querySelector('.nav-overlay').style.display = 'block';
+        });
+
+        clearButton.addEventListener('click', () => {
+            document.querySelectorAll('input[type="checkbox"], input[type="radio"]').forEach(input => {
+                input.checked = false;
+            });
+            document.getElementById('statusAll').checked = true;
+            document.getElementById('kycYes').checked = true;
+            document.getElementById('blockchain').value = '';
+            document.getElementById('sortBy').value = 'relevance';
+        });
+
+        applyButton.addEventListener('click', () => {
+            const filters = {
+                likelihood: Array.from(document.querySelectorAll('input[name="likelihood"]:checked')).map(el => el.value),
+                difficulty: Array.from(document.querySelectorAll('input[name="difficulty"]:checked')).map(el => el.value),
+                status: document.querySelector('input[name="status"]:checked').value,
+                kyc: document.querySelector('input[name="kyc"]:checked').value,
+                blockchain: document.getElementById('blockchain').value,
+                sortBy: document.getElementById('sortBy').value
+            };
+            console.log('Applied filters:', filters);
+            modal.style.display = 'none';
+        });
+
+        function toggleFilter(element) {
+            const filterOptions = element.nextElementSibling;
+            const isOpen = element.classList.contains('open');
+            
+            // Close all other open filters
+            document.querySelectorAll('.filter-title.open').forEach(openFilter => {
+                if (openFilter !== element) {
+                    openFilter.classList.remove('open');
+                    openFilter.nextElementSibling.style.display = 'none';
+                }
+            });
+
+            // Toggle the clicked filter
+            element.classList.toggle('open');
+            filterOptions.style.display = isOpen ? 'none' : 'block';
+        }
+
+        window.addEventListener('click', (event) => {
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+
+
+//GOOGLE ACCOUNT onSignIn
+function onSignIn(googleUser) {
+  var profile = googleUser.getBasicProfile();
+  alert('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+  alert('Name: ' + profile.getName());
+  alert('Image URL: ' + profile.getImageUrl());
+  alert('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+}
+
+
+
+        // Function to update notification count
+        function updateNotificationCount(count) {
+            const countElement = document.querySelector('.notification-count');
+            countElement.textContent = count > 0 ? count : '';
+        }
+
+        // Example usage:
+        // updateNotificationCount(3); // Sets count to 3
+        // updateNotificationCount(0); // Hides the count
+     
+     /* deals with Airdrop or Token ratings*/
+        document.addEventListener('DOMContentLoaded', () => {
+            const progressBars = document.querySelectorAll('.circular-progress');
+            
+            progressBars.forEach(bar => {
+                const rating = parseFloat(bar.dataset.rating);
+                const progress = (rating / 5) * 100; // Convert rating to percentage
+                bar.style.setProperty('--progress', progress);
+
+                // Set numeric rating display
+                const ratingValue = bar.querySelector('.circular-progress-value');
+                ratingValue.textContent = rating.toFixed(1);
+            });
+        });
+
+document.body.onclick = function() {
+
+/* annoyimg FULL SCREEN!!! 
+  if(!document.fullscreenElement){ 
+  document.body.webkitRequestFullScreen(); } */
+  }
+
+
+async function getData() {
+    // fetching data
+
+    const res = await fetch('https://api.airdropgecko.com/api/v3/airdrops/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false')
+
+    const data = await res.json()
+
+    
+
+
+
+    //updateUI(data) /*call to call airdrops api*/
+
+}
+
+
+
+function updateUI(data) {
+
+    // updating UI
+
+    const container = $('.bottom')
+    //The tab exist first in the bottom div
+    
+
+    let html = '<div class="tab"><h4 style="font-size: 83.7%; font-weight : 700;">Recent Transactions</h4><span id="airBtn" style="color : grey;" onclick="populate(this.id)">...</span></div>'
+
+
+
+    data.forEach((item, index) => {
+        let airdropPossessed = (Math.random() * 14).toFixed(8);
+        
+        //instantiate credibilityand sign its value.
+        
+        let credibility = new Intl.NumberFormat("en-US", {
+    signDisplay: "exceptZero"
+}).format(item.price_change_percentage_24h.toFixed
+(2)); 
+
+       
+        
+        let divChange = "";
+
+        const div = `
+
+            <div class='box' id='${index == 0 && 'wheat'}' >
+            <span class="down1">
+            <img src='${item.image}' class='airdrops' alt='${item.name}' /></span>
+            
+            
+                          
+              <span class="down2">
+                  <h4 id="airdropName">${item.name}</h4>
+                  <span id="startAmount">$${(item.current_price).toFixed(2)} <span id="credibility" onclick ="this.id = 'credibilityRed';"                    >${credibility}%</span></span>
+              </span>
+              <span class="down3">
+                  <h4 id="airdropValue">$${(item.current_price * airdropPossessed).toFixed(2)}</h4>
+                  <span id="airdropPossessed">${airdropPossessed}</span>
+              </span>
+          </div>       
+
+                
+
+        `
+        
+      //change price_change_percentage_24h font color to red if less than 1
+      
+        
+      if (Math.sign(credibility)== -1){
+           divChange = div.replace('id="credibility"', 'id="credibilityRed"') ;
+           
+           
+            
+        }
+        else{
+            divChange += div;
+        }
+      
+      
+
+        html += divChange;
+
+    })
+  
+            
+
+    container.innerHTML = html + '<div id="add" class="dashed-box">+ Add Wallet</div></div>'  ;
+    
+
+}
+
+
+
+
+
+window.onload = getData()
+
+      let generateBtn = document.getElementById("generate-btn");
+      let buyBtn = document.getElementById("buyBtn");
+      let addBtn = document.getElementById("add");
+      let uploadBox = document.getElementById("uploadBox");
+      let addBox = document.getElementById("addBox");
+      let buyBox = document.getElementById("buy"); 
+      let outputAddr = document.getElementById("output-addr");
+      let box1 = document.getElementById("box1");
+      let box2 = document.getElementById("box2");
+      let box3 = document.getElementById("box3");
+      let qrCode = document.getElementById("qrCode");
+      let closeBtn = document.getElementById("closeBtn");
+      let copyBtn = document.getElementById("copy-btn");
+      let code = document.querySelector('.code'); 
+      let toast = document.querySelector('#qrCode');
+      let walletString = "0123456789abcdef";
+      
+      
+
+      let randomColor = () => {
+        let walletAddr  = "0x";
+        for (i = 0; i < 40; i++) {
+          walletAddr += walletString[Math.floor(Math.random() * walletString.length)];
+        }
+        return walletAddr;
+      }; 
+
+      let generateGrad = () => {
+        let address = randomColor();
+        outputAddr.value = `${address}` ; 
+        var data = address ;
+        var url = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${data}`;
+        code.src = url;
+        
+      };
+
+        let addWallet = () =>{
+            addBox.style.display="none"
+            uploadBox.style.display="block"
+            
+        };
+        
+      
+
+        let uploadDocs = (id) =>{
+          document.getElementById(id).style.display="none"
+          document.getElementById("progress").style.display="block"
+        };
+
+    
+      addBtn.addEventListener("click", () => { 
+        addBox.style.display ="block";
+      });
+      
+      copyBtn.addEventListener("click", () => {
+        outputAddr.select();
+        document.execCommand("copy");
+        alert( "Code Copied To Clipboard" + ` ${outputAddr.value}`);
+      });
+
+      
+      closeBtn.addEventListener("click", () => {
+        buyBox.style.display ="none";
+      });
+
+      generateBtn.addEventListener("click", generateGrad);
+      window.onload = generateGrad;
+      const splash = document.querySelector(".splash");
+
+document.addEventListener("DOMContentLoaded" , (e)=>{
+    setTimeout(()=>{
+        splash.classList.add("display-none");
+} , 8000);
+});
+
+
+
+
+</script>
+  </body>
+</html>
